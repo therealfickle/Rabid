@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "rabid",
+  "version": "${version}",
+  "name": "Rabid",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/rabid/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "me.therealfickle.rabid.client.RabidDataGenerator"
+    ],
+    "client": [
+      "me.therealfickle.rabid.client.RabidClient"
+    ],
+    "main": [
+      "me.therealfickle.rabid.Rabid"
+    ]
+  },
+  "mixins": [
+    "rabid.mixins.json",
+    {
+      "config": "rabid.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
