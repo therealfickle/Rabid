@@ -4,7 +4,7 @@ import me.therealfickle.rabid.init.RabidAttachments;
 import me.therealfickle.rabid.init.RabidItems;
 import me.therealfickle.rabid.init.RabidTabs;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +19,7 @@ public class Rabid implements ModInitializer {
         RabidAttachments.init();
     }
 
-    public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    public static Identifier id(String path) {
+        return Identifier.fromNamespaceAndPath(MODID, path);
     }
 }

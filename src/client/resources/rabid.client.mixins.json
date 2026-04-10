@@ -4,6 +4,7 @@
   "package": "me.therealfickle.rabid.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "ContextualInfoMixin",
     "GuiMixin"
   ],
   "injectors": {

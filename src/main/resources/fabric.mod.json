@@ -27,6 +27,7 @@
       "environment": "client"
     }
   ],
+  "accessWidener": "rabid.classtweaker",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",

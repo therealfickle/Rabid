@@ -3,11 +3,11 @@ package me.therealfickle.rabid.item;
 import me.therealfickle.rabid.init.RabidAttachments;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jspecify.annotations.NonNull;
 
 public class ExperimentalHELRCallerItem extends Item {
     public ExperimentalHELRCallerItem(Properties settings) {
@@ -15,9 +15,9 @@ public class ExperimentalHELRCallerItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NonNull InteractionResult use(Level level, Player player, @NonNull InteractionHand hand) {
         var itemStack = player.getItemInHand(hand);
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             var fickleMode = RabidAttachments.isInFickleMode(player);
             if (fickleMode) {
                 player.displayClientMessage(Component.literal("Turning off fickle mode :C"), true);
@@ -25,8 +25,8 @@ public class ExperimentalHELRCallerItem extends Item {
                 player.displayClientMessage(Component.literal("Turning ON fickle mode :3"), true);
             }
             RabidAttachments.setFickleMode(player, !fickleMode);
-            player.getCooldowns().addCooldown(this, 200);
+            player.getCooldowns().addCooldown(itemStack, 200);
         }
-        return InteractionResultHolder.success(itemStack);
+        return InteractionResult.SUCCESS;
     }
 }
