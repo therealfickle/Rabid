@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.15-SNAPSHOT'
+    id 'fabric-loom' version '1.16-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -14,6 +14,8 @@ loom {
     var username = "therealfickle"
     var uuid = "0d16d93b-dc28-40d4-9104-b2b13da3ea53"
     splitEnvironmentSourceSets()
+    accessWidenerPath = new File("src/main/resources/rabid.classtweaker")
+
 
     mods {
         "rabid" {
@@ -73,8 +75,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "org.teamvoided:creative_works:0.5.0"
-    modImplementation "me.fzzyhmstrs:fzzy_config:0.7.6+1.21"
+    modImplementation "org.teamvoided:creative_works:0.5.1+1.21.11"
+    modImplementation "me.fzzyhmstrs:fzzy_config:0.7.6+1.21.11"
 }
 
 processResources {
