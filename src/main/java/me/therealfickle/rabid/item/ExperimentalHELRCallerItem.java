@@ -9,14 +9,22 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
+import static me.therealfickle.rabid.Rabid.CONFIG;
+import static me.therealfickle.rabid.util.Helpers.isFickle;
+
 public class ExperimentalHELRCallerItem extends Item {
     public ExperimentalHELRCallerItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public @NonNull InteractionResult use(Level level, Player player, @NonNull InteractionHand hand) {
+    public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand hand) {
         var itemStack = player.getItemInHand(hand);
+        if (CONFIG.HELRCIsFickleOnly && !isFickle(player)) {
+            player.displayClientMessage(Component.literal("No chuds allowed"), true);
+            return InteractionResult.SUCCESS;
+        }
+
         if (!level.isClientSide()) {
             var fickleMode = RabidAttachments.isInFickleMode(player);
             if (fickleMode) {
