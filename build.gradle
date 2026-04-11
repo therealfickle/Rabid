@@ -40,6 +40,12 @@ loom {
 fabricApi {
     configureDataGeneration {
         client = true
+        createRunConfiguration = true
+        createSourceSet = true
+        addToResources = true
+        modId = "rabid_datagen"
+
+        strictValidation = false
     }
 }
 

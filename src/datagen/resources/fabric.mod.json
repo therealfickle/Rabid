@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "rabid_datagen",
+  "version": "1.0.0-data",
+  "name": "Rabid Datagen",
+  "entrypoints": {
+    "fabric-datagen": [
+       "me.therealfickle.rabid.datagen.RabidDataGenerator"
+    ]
+  }
+}

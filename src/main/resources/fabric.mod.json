@@ -10,9 +10,6 @@
   "icon": "assets/rabid/icon.png",
   "environment": "*",
   "entrypoints": {
-    "fabric-datagen": [
-      "me.therealfickle.rabid.client.RabidDataGenerator"
-    ],
     "client": [
       "me.therealfickle.rabid.client.RabidClient"
     ],
