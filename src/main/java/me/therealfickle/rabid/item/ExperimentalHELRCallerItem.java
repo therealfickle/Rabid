@@ -25,7 +25,7 @@ public class ExperimentalHELRCallerItem extends Item {
                 player.displayClientMessage(Component.literal("Turning ON fickle mode :3"), true);
             }
             RabidAttachments.setFickleMode(player, !fickleMode);
-            player.getCooldowns().addCooldown(itemStack, 200);
+            if (!player.isCreative()) player.getCooldowns().addCooldown(itemStack, 200);
         }
         return InteractionResult.SUCCESS;
     }
