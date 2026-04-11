@@ -1,6 +1,7 @@
 package me.therealfickle.rabid.datagen;
 
 import me.therealfickle.rabid.Rabid;
+import me.therealfickle.rabid.datagen.data.ChestLootTables;
 import me.therealfickle.rabid.datagen.data.tags.BiomeTagsProvider;
 import me.therealfickle.rabid.datagen.data.worldgen.RStructureSets;
 import me.therealfickle.rabid.datagen.data.worldgen.RStructures;
@@ -25,6 +26,7 @@ public class RabidDataGenerator implements DataGeneratorEntrypoint {
 
         // Data
         pack.addProvider(BiomeTagsProvider::new);
+        pack.addProvider(ChestLootTables::new);
         pack.addProvider(RegistryProvider::new);
     }
 
