@@ -22,7 +22,7 @@ public interface SupplyPodPieces {
                 new StructureTemplatePool(
                         pools.getOrThrow(Pools.EMPTY),
                         ImmutableList.of(Pair.of(StructurePoolElement.single("rabid:supply_pod/pod"), 1)),
-                        StructureTemplatePool.Projection.TERRAIN_MATCHING
+                        StructureTemplatePool.Projection.RIGID
                 )
         );
     }

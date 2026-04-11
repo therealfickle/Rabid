@@ -27,7 +27,7 @@ public interface RStructures {
                                 biomes.getOrThrow(RabidBiomeTags.HAS_SUPPLY_POD),
                                 Map.of(),
                                 GenerationStep.Decoration.SURFACE_STRUCTURES,
-                                TerrainAdjustment.ENCAPSULATE
+                                TerrainAdjustment.NONE
                         ),
                         templatePools.getOrThrow(SupplyPodPieces.POD),
                         6,
