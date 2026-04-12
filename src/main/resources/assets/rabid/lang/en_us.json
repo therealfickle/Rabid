@@ -2,5 +2,6 @@
   "item.rabid.experimental_helr_caller": "Experimental HELR Caller",
   "item.rabid.polonium_pellet": "Polonium Pellet",
   "item.rabid.polonium_nugget": "Polonium Nugget",
-  "itemGroup.rabid.rabid_tab": "RABID!"
+  "itemGroup.rabid.rabid_tab": "RABID!",
+  "container.ficlium_crate": "Ficlium Crate"
 }
