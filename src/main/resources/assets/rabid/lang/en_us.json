@@ -2,6 +2,10 @@
   "item.rabid.experimental_helr_caller": "Experimental HELR Caller",
   "item.rabid.polonium_pellet": "Polonium Pellet",
   "item.rabid.polonium_nugget": "Polonium Nugget",
+  "item.rabid.ficlium_block": "Ficlium Block",
+  "item.rabid.ficlium_crate": "Ficlium Crate",
+  "item.rabid.pod_distress_light": "Ficlium Distress Light",
+  "item.rabid.fickle_plush": "Fickle Plush",
   "itemGroup.rabid.rabid_tab": "RABID!",
   "container.ficlium_crate": "Ficlium Crate"
 }

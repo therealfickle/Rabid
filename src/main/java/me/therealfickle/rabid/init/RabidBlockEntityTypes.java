@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public interface RabidBlockEntityTypes {
-    BlockEntityType<FicliumCrateBlockEntity> FICLIUM_CRATE = register("ficlium_crate", FicliumCrateBlockEntity::new, Blocks.BARREL);
+    BlockEntityType<FicliumCrateBlockEntity> FICLIUM_CRATE = register("ficlium_crate", FicliumCrateBlockEntity::new, RabidBlocks.FICLIUM_CRATE);
 
     static void init() {
     }

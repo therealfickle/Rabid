@@ -1,10 +1,7 @@
 package me.therealfickle.rabid;
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
-import me.therealfickle.rabid.init.RabidAttachments;
-import me.therealfickle.rabid.init.RabidBlockEntityTypes;
-import me.therealfickle.rabid.init.RabidItems;
-import me.therealfickle.rabid.init.RabidTabs;
+import me.therealfickle.rabid.init.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
@@ -19,6 +16,7 @@ public class Rabid implements ModInitializer {
     @Override
     public void onInitialize() {
         RabidItems.init();
+        RabidBlocks.init();
         RabidBlockEntityTypes.init();
         RabidTabs.init();
         RabidAttachments.init();

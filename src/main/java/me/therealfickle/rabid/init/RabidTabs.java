@@ -11,12 +11,18 @@ import static me.therealfickle.rabid.Rabid.id;
 
 public interface RabidTabs {
     CreativeModeTab RABID_TAB = register("rabid_tab", FabricItemGroup.builder()
-            .icon(() -> new ItemStack(RabidItems.EXPERIMENTAL_HELR_CALLER))
+            .icon(() -> new ItemStack(RabidBlocks.FICKLE_PLUSH))
             .title(Component.translatable("itemGroup.rabid.rabid_tab"))
             .displayItems((parameters, output) -> {
+                output.accept(RabidBlocks.FICKLE_PLUSH);
                 output.accept(RabidItems.EXPERIMENTAL_HELR_CALLER);
                 output.accept(RabidItems.POLONIUM_PELLET);
                 output.accept(RabidItems.POLONIUM_NUGGET);
+                output.accept(RabidBlocks.FICLIUM_BLOCK);
+                output.accept(RabidBlocks.FICLIUM_CRATE);
+                output.accept(RabidBlocks.POD_DISTRESS_LIGHT);
+
+
             })
             .build()
     );

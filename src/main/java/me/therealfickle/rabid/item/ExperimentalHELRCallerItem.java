@@ -21,7 +21,7 @@ public class ExperimentalHELRCallerItem extends Item {
     public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand hand) {
         var itemStack = player.getItemInHand(hand);
         if (CONFIG.HELRCIsFickleOnly && !isFickle(player)) {
-            player.displayClientMessage(Component.literal("No chuds allowed"), true);
+            player.displayClientMessage(Component.literal("It seems that you do not have a use for this..."), true);
             return InteractionResult.SUCCESS;
         }
 
