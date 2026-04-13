@@ -1,12 +1,15 @@
 package me.therealfickle.rabid.init;
 
+import me.therealfickle.rabid.data.tags.RabidDamageTypeTags;
 import me.therealfickle.rabid.item.ExperimentalHELRCallerItem;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.DamageResistant;
 
 import java.util.function.Function;
 
@@ -18,7 +21,11 @@ public interface RabidItems {
     FoodProperties PN = new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build();
     Item POLONIUM_NUGGET = register("polonium_nugget", new Item.Properties().food(PN));
 
-    Item EXPERIMENTAL_HELR_CALLER = register("experimental_helr_caller", ExperimentalHELRCallerItem::new, new Item.Properties());
+    Item EXPERIMENTAL_HELR_CALLER = register("experimental_helr_caller", ExperimentalHELRCallerItem::new,
+            new Item.Properties()
+                    .stacksTo(1)
+                    .component(DataComponents.DAMAGE_RESISTANT, new DamageResistant(RabidDamageTypeTags.HELR_CALLER_IMMUNE))
+    );
 
     static void init() {
 
