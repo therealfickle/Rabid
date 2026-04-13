@@ -1,4 +1,4 @@
-package me.therealfickle.rabid.datagen.data;
+package me.therealfickle.rabid.datagen.data.loot_table;
 
 import me.therealfickle.rabid.data.RabidLootTables;
 import me.therealfickle.rabid.init.RabidItems;
