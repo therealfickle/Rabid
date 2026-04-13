@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rabid",
-  "version": "${version}",
+  "version": "0.1.0-alpha.1+1.21.11",
   "name": "Rabid",
   "description": "",
   "authors": [],
