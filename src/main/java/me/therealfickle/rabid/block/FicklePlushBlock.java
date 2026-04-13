@@ -38,7 +38,7 @@ public class FicklePlushBlock extends Block {
     protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (!level.isClientSide()) {
             // TODO add stat for interacted with plush
-            level.playSound(null, blockPos, SoundEvents.ENDER_DRAGON_DEATH, SoundSource.BLOCKS);
+            level.playSound(null, blockPos, SoundEvents.BAT_AMBIENT, SoundSource.BLOCKS);
         }
 
         return InteractionResult.SUCCESS;
