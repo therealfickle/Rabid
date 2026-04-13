@@ -7,5 +7,6 @@
   "item.rabid.pod_distress_light": "Ficlium Distress Light",
   "item.rabid.fickle_plush": "Fickle Plush",
   "itemGroup.rabid.rabid_tab": "RABID!",
-  "container.ficlium_crate": "Ficlium Crate"
+  "container.ficlium_crate": "Ficlium Crate",
+  "rabid.helr_caller.unusable": "It seams like this item can't be used right now..."
 }

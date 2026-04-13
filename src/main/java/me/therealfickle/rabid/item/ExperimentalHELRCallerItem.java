@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
 import static me.therealfickle.rabid.Rabid.CONFIG;
+import static me.therealfickle.rabid.util.Helpers.isDev;
 import static me.therealfickle.rabid.util.Helpers.isFickle;
 
 public class ExperimentalHELRCallerItem extends Item {
@@ -20,6 +21,11 @@ public class ExperimentalHELRCallerItem extends Item {
     @Override
     public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand hand) {
         var itemStack = player.getItemInHand(hand);
+        if (!isDev()){
+            player.displayClientMessage(Component.translatable("rabid.helr_caller.unusable"), true);
+            return InteractionResult.SUCCESS;
+        }
+
         if (CONFIG.HELRCIsFickleOnly && !isFickle(player)) {
             player.displayClientMessage(Component.literal("It seems that you do not have a use for this..."), true);
             return InteractionResult.SUCCESS;
