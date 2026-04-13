@@ -14,7 +14,6 @@ import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.renderer.block.model.VariantMutator;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.createBooleanModelDispatch;
@@ -28,7 +27,7 @@ public class ModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators gen) {
         gen.createTrivialCube(RabidBlocks.FICLIUM_BLOCK);
-        gen.createRotatedPillarWithHorizontalVariant(RabidBlocks.FICLIUM_CRATE, TexturedModel.COLUMN_ALT, TexturedModel.COLUMN_HORIZONTAL_ALT);
+        createCrate(gen, RabidBlocks.FICLIUM_CRATE);
         createLightningRod(gen, RabidBlocks.POD_DISTRESS_LIGHT);
 
 
@@ -49,6 +48,11 @@ public class ModelProvider extends FabricModelProvider {
                                 .with(ROTATIONS_COLUMN_WITH_FACING)
                 );
 
+    }
+
+    public void createCrate(BlockModelGenerators gen, Block block) {
+        var model = plainVariant(TexturedModel.COLUMN_ALT.create(block, gen.modelOutput));
+        gen.blockStateOutput.accept(MultiVariantGenerator.dispatch(block, model).with(ROTATIONS_COLUMN_WITH_FACING));
     }
 
     private static final PropertyDispatch<VariantMutator> ROTATIONS_COLUMN_WITH_FACING = PropertyDispatch.modify(BlockStateProperties.FACING)
