@@ -1,6 +1,7 @@
 package me.therealfickle.rabid.datagen.data.loot_table;
 
 import me.therealfickle.rabid.data.RabidLootTables;
+import me.therealfickle.rabid.init.RabidBlocks;
 import me.therealfickle.rabid.init.RabidItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
@@ -35,6 +36,11 @@ public class ChestLootTables extends SimpleFabricLootTableProvider {
                                 LootPool.lootPool()
                                         .setRolls(ConstantValue.exactly(1f))
                                         .add(lootTableItem(RabidItems.EXPERIMENTAL_HELR_CALLER))
+                        )
+                        .withPool(
+                                LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1f))
+                                        .add(lootTableItem(RabidBlocks.FICKLE_PLUSH))
                         )
                         .withPool(
                                 LootPool.lootPool()

@@ -31,7 +31,7 @@ public interface RStructures {
                         ),
                         templatePools.getOrThrow(SupplyPodPieces.POD),
                         6,
-                        ConstantHeight.of(VerticalAnchor.absolute(0)),
+                        ConstantHeight.of(VerticalAnchor.absolute(-1)),
                         false,
                         Heightmap.Types.OCEAN_FLOOR_WG
                 )
