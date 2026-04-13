@@ -18,6 +18,6 @@ public class BlockLootTables extends FabricBlockLootTableProvider {
         dropSelf(RabidBlocks.FICLIUM_BLOCK);
         add(RabidBlocks.FICLIUM_CRATE, this::createNameableBlockEntityTable);
         dropSelf(RabidBlocks.POD_DISTRESS_LIGHT);
-
+        dropSelf(RabidBlocks.FICKLE_PLUSH);
     }
 }
