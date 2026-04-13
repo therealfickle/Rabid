@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -23,7 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FicklePlushBlock extends Block {
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
-    private static final VoxelShape SHAPE = Block.column(14.0, 2.0, 14.0);
+    public static final VoxelShape SHAPE = Block.column(12.0, 0.0, 16.0);
 
     public FicklePlushBlock(Properties properties) {
         super(properties);
@@ -38,6 +37,7 @@ public class FicklePlushBlock extends Block {
     @Override
     protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (!level.isClientSide()) {
+            // TODO add stat for interacted with plush
             level.playSound(null, blockPos, SoundEvents.ENDER_DRAGON_DEATH, SoundSource.BLOCKS);
         }
 
