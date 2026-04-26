@@ -31,7 +31,10 @@ public interface RabidBlocks {
                     .instrument(NoteBlockInstrument.BASEDRUM)
     );
     Block FICLIUM_CRATE = register("ficlium_crate", FicliumCrateBlock::new, ofFullCopy(FICLIUM_BLOCK));
-    Block POD_DISTRESS_LIGHT = register("pod_distress_light", LightningRodBlock::new, ofFullCopy(FICLIUM_BLOCK).destroyTime(10f));
+    Block POD_DISTRESS_LIGHT = register("pod_distress_light", LightningRodBlock::new, ofFullCopy(FICLIUM_BLOCK)
+            .destroyTime(10f)
+            .isViewBlocking(Blocks::never)
+    );
     Block FICKLE_PLUSH = register("fickle_plush", FicklePlushBlock::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PINK)

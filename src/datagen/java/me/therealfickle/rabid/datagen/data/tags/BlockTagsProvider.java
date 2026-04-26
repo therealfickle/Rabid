@@ -20,9 +20,5 @@ public class BlockTagsProvider extends FabricTagProvider.BlockTagProvider {
                 .add(RabidBlocks.FICLIUM_BLOCK)
                 .add(RabidBlocks.FICLIUM_CRATE)
                 .add(RabidBlocks.POD_DISTRESS_LIGHT);
-        valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
-                .add(RabidBlocks.FICLIUM_BLOCK)
-                .add(RabidBlocks.FICLIUM_CRATE)
-                .add(RabidBlocks.POD_DISTRESS_LIGHT);
     }
 }
