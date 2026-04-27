@@ -18,6 +18,7 @@ public interface RabidTabs {
                 output.accept(RabidItems.EXPERIMENTAL_HELR_CALLER);
                 output.accept(RabidItems.POLONIUM_PELLET);
                 output.accept(RabidItems.POLONIUM_NUGGET);
+                output.accept(RabidItems.FICLIUM_INGOT);
                 output.accept(RabidBlocks.FICLIUM_BLOCK);
                 output.accept(RabidBlocks.FICLIUM_CRATE);
                 output.accept(RabidBlocks.POD_DISTRESS_LIGHT);

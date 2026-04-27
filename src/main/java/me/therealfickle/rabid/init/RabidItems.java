@@ -21,6 +21,8 @@ public interface RabidItems {
     FoodProperties PN = new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build();
     Item POLONIUM_NUGGET = register("polonium_nugget", new Item.Properties().food(PN));
 
+    Item FICLIUM_INGOT = register("ficlium_ingot", new Item.Properties());
+
     Item EXPERIMENTAL_HELR_CALLER = register("experimental_helr_caller", ExperimentalHELRCallerItem::new,
             new Item.Properties()
                     .stacksTo(1)
