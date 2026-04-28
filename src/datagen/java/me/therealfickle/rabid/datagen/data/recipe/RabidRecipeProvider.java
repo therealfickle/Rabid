@@ -12,6 +12,8 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
+import static me.therealfickle.rabid.datagen.data.recipe.RecipeHelpers.sixItemStorageRecipes;
+
 public class RabidRecipeProvider extends FabricRecipeProvider {
     public RabidRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> lookup) {
         super(output, lookup);
@@ -45,7 +47,8 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
                     "ficlium_ingot_from_ficlium_block", "ficlium_ingot"
             );
 
-            nineBlockStorageRecipesWithCustomPacking(
+            sixItemStorageRecipes(
+                    this,
                     RecipeCategory.MISC,
                     RabidItems.POLONIUM_NUGGET,
                     RecipeCategory.MISC,
@@ -54,6 +57,11 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
                     "polonium_pellet"
             );
         }
+
+        public RecipeOutput output() {
+            return output;
+        }
+
     }
 
 }
