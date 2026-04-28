@@ -8,7 +8,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.level.block.Blocks;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -20,17 +19,17 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
 
     @Override
     protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider lookup, @NonNull RecipeOutput exporter) {
-        return new BrutalRecipeGen(lookup, exporter);
+        return new RabidRecipeGen(lookup, exporter);
     }
 
     @Override
     public @NonNull String getName() {
-        return "Brutal recipes";
+        return "Rabid recipes";
     }
 
 
-    public static class BrutalRecipeGen extends RecipeProvider {
-        protected BrutalRecipeGen(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
+    public static class RabidRecipeGen extends RecipeProvider {
+        protected RabidRecipeGen(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
             super(provider, recipeOutput);
         }
 
@@ -44,6 +43,15 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
                     RecipeCategory.BUILDING_BLOCKS,
                     RabidBlocks.FICLIUM_BLOCK,
                     "ficlium_ingot_from_ficlium_block", "ficlium_ingot"
+            );
+
+            nineBlockStorageRecipesWithCustomPacking(
+                    RecipeCategory.MISC,
+                    RabidItems.POLONIUM_NUGGET,
+                    RecipeCategory.MISC,
+                    RabidItems.POLONIUM_PELLET,
+                    "polonium_pellet_from_nuggets",
+                    "polonium_pellet"
             );
         }
     }

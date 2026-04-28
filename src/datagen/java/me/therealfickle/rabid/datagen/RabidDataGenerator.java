@@ -4,6 +4,7 @@ import me.therealfickle.rabid.Rabid;
 import me.therealfickle.rabid.datagen.assets.ModelProvider;
 import me.therealfickle.rabid.datagen.data.loot_table.BlockLootTables;
 import me.therealfickle.rabid.datagen.data.loot_table.ChestLootTables;
+import me.therealfickle.rabid.datagen.data.recipe.RabidRecipeProvider;
 import me.therealfickle.rabid.datagen.data.tags.BiomeTagsProvider;
 import me.therealfickle.rabid.datagen.data.tags.BlockTagsProvider;
 import me.therealfickle.rabid.datagen.data.tags.DamageTypeTagsProvider;
@@ -31,12 +32,14 @@ public class RabidDataGenerator implements DataGeneratorEntrypoint {
         // Assets
         pack.addProvider(ModelProvider::new);
         // Data
-        pack.addProvider(BlockTagsProvider::new);
-        pack.addProvider(BiomeTagsProvider::new);
-        pack.addProvider(DamageTypeTagsProvider::new);
         pack.addProvider(ChestLootTables::new);
         pack.addProvider(BlockLootTables::new);
         pack.addProvider(RegistryProvider::new);
+        pack.addProvider(RabidRecipeProvider::new);
+        // Tags
+        pack.addProvider(BlockTagsProvider::new);
+        pack.addProvider(BiomeTagsProvider::new);
+        pack.addProvider(DamageTypeTagsProvider::new);
 
     }
 

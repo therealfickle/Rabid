@@ -1,6 +1,7 @@
 package me.therealfickle.rabid.datagen.assets;
 
 import me.therealfickle.rabid.init.RabidBlocks;
+import me.therealfickle.rabid.init.RabidItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -35,6 +36,10 @@ public class ModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerators gen) {
+        gen.generateFlatItem(RabidItems.FICLIUM_INGOT, ModelTemplates.FLAT_ITEM);
+        gen.generateFlatItem(RabidItems.POLONIUM_NUGGET, ModelTemplates.FLAT_ITEM);
+        gen.generateFlatItem(RabidItems.POLONIUM_PELLET, ModelTemplates.FLAT_ITEM);
+        gen.generateFlatItem(RabidItems.EXPERIMENTAL_HELR_CALLER, ModelTemplates.FLAT_ITEM);
 
     }
 
