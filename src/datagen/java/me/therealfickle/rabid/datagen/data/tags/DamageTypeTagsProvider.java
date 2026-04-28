@@ -8,7 +8,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
-import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +18,7 @@ public class DamageTypeTagsProvider extends FabricTagProvider<DamageType> {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NonNull Provider provider) {
+    protected void addTags(HolderLookup.Provider provider) {
         builder(RabidDamageTypeTags.HELR_CALLER_IMMUNE)
                 .forceAddTag(DamageTypeTags.IS_FIRE)
                 .forceAddTag(DamageTypeTags.IS_EXPLOSION)

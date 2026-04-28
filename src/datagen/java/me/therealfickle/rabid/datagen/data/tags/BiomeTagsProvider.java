@@ -7,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -18,7 +17,7 @@ public class BiomeTagsProvider extends FabricTagProvider<Biome> {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NonNull Provider provider) {
+    protected void addTags(HolderLookup.Provider provider) {
         builder(RabidBiomeTags.HAS_SUPPLY_POD)
                 .forceAddTag(BiomeTags.IS_OVERWORLD);
     }

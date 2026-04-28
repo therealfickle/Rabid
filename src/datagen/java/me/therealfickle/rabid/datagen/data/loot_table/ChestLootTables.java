@@ -14,7 +14,6 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
@@ -27,7 +26,7 @@ public class ChestLootTables extends SimpleFabricLootTableProvider {
     }
 
     @Override
-    public void generate(@NonNull BiConsumer<ResourceKey<LootTable>, LootTable.Builder> gen) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> gen) {
 
         gen.accept(
                 RabidLootTables.SUPPLY_POD,
