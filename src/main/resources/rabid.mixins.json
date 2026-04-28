@@ -4,7 +4,7 @@
   "package": "me.therealfickle.rabid.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ItemMixin"
+    "ConsumableMixin"
   ],
   "injectors": {
     "defaultRequire": 1
