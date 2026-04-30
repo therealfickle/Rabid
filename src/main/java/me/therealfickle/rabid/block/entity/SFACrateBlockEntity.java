@@ -26,18 +26,18 @@ import net.minecraft.world.level.storage.ValueOutput;
 
 import java.util.List;
 
-public class FicliumCrateBlockEntity extends RandomizableContainerBlockEntity {
-    private static final Component DEFAULT_NAME = Component.translatable("container.ficlium_crate");
+public class SFACrateBlockEntity extends RandomizableContainerBlockEntity {
+    private static final Component DEFAULT_NAME = Component.translatable("container.rabid.sfa_crate");
     private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
     private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
         @Override
         protected void onOpen(Level level, BlockPos blockPos, BlockState blockState) {
-            FicliumCrateBlockEntity.this.playSound(blockState, SoundEvents.BARREL_OPEN);
+            SFACrateBlockEntity.this.playSound(blockState, SoundEvents.BARREL_OPEN);
         }
 
         @Override
         protected void onClose(Level level, BlockPos blockPos, BlockState blockState) {
-            FicliumCrateBlockEntity.this.playSound(blockState, SoundEvents.BARREL_CLOSE);
+            SFACrateBlockEntity.this.playSound(blockState, SoundEvents.BARREL_CLOSE);
         }
 
         @Override
@@ -48,15 +48,15 @@ public class FicliumCrateBlockEntity extends RandomizableContainerBlockEntity {
         public boolean isOwnContainer(Player player) {
             if (player.containerMenu instanceof ChestMenu) {
                 Container container = ((ChestMenu) player.containerMenu).getContainer();
-                return container == FicliumCrateBlockEntity.this;
+                return container == SFACrateBlockEntity.this;
             } else {
                 return false;
             }
         }
     };
 
-    public FicliumCrateBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(RabidBlockEntityTypes.FICLIUM_CRATE, blockPos, blockState);
+    public SFACrateBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(RabidBlockEntityTypes.SFA_CRATE, blockPos, blockState);
     }
 
     @Override

@@ -30,7 +30,7 @@ public interface RabidItems {
                     .component(RabidDataComponents.FICKLE_FUEL, RabidItemData.FUEL)
     );
 
-    Item FICLIUM_INGOT = register("ficlium_ingot", new Item.Properties());
+    Item SFA_INGOT = register("sfa_ingot", new Item.Properties());
 
     Item EXPERIMENTAL_HELR_CALLER = register("experimental_helr_caller", ExperimentalHELRCallerItem::new,
             new Item.Properties()

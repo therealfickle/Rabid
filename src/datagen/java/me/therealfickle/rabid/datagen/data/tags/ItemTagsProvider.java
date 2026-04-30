@@ -20,6 +20,6 @@ public class ItemTagsProvider extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(RabidItemTags.ADDITIONAL_FICKLE_FUELS)
                 .add(Items.OMINOUS_BOTTLE);
         valueLookupBuilder(ConventionalItemTags.INGOTS)
-                .add(RabidItems.FICLIUM_INGOT);
+                .add(RabidItems.SFA_INGOT);
     }
 }

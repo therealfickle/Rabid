@@ -1,10 +1,11 @@
 package me.therealfickle.rabid.init;
 
 import me.therealfickle.rabid.block.FicklePlushBlock;
-import me.therealfickle.rabid.block.FicliumCrateBlock;
+import me.therealfickle.rabid.block.SFACrateBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,7 +23,7 @@ import static me.therealfickle.rabid.Rabid.id;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 
 public interface RabidBlocks {
-    Block FICLIUM_BLOCK = register("ficlium_block", Block::new,
+    Block SFA_BLOCK = register("sfa_block", Block::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
                     .requiresCorrectToolForDrops()
@@ -30,10 +31,11 @@ public interface RabidBlocks {
                     .sound(SoundType.NETHERITE_BLOCK)
                     .instrument(NoteBlockInstrument.BASEDRUM)
     );
-    Block FICLIUM_CRATE = register("ficlium_crate", FicliumCrateBlock::new, ofFullCopy(FICLIUM_BLOCK));
-    Block POD_DISTRESS_LIGHT = register("pod_distress_light", LightningRodBlock::new, ofFullCopy(FICLIUM_BLOCK)
-            .destroyTime(10f)
-            .isViewBlocking(Blocks::never)
+    Block SFA_CRATE = register("sfa_crate", SFACrateBlock::new, ofFullCopy(SFA_BLOCK));
+    Block SFA_DISTRESS_LIGHT = register("sfa_distress_light", LightningRodBlock::new,
+            ofFullCopy(SFA_BLOCK)
+                    .destroyTime(10f)
+                    .isViewBlocking(Blocks::never)
     );
     Block FICKLE_PLUSH = register("fickle_plush", FicklePlushBlock::new,
             BlockBehaviour.Properties.of()
@@ -47,7 +49,14 @@ public interface RabidBlocks {
     );
 
     static void init() {
+        addBlockItemAlias(id("ficlium_block"), id("sfa_block"));
+        addBlockItemAlias(id("ficlium_crate"), id("sfa_crate"));
+        addBlockItemAlias(id("pod_distress_light"), id("sfa_distress_light"));
+    }
 
+    static void addBlockItemAlias(Identifier oldId, Identifier newId) {
+        BuiltInRegistries.BLOCK.addAlias(oldId, newId);
+        BuiltInRegistries.ITEM.addAlias(oldId, newId);
     }
 
 

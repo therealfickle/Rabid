@@ -1,18 +1,20 @@
 package me.therealfickle.rabid.init;
 
-import me.therealfickle.rabid.block.entity.FicliumCrateBlockEntity;
+import me.therealfickle.rabid.block.entity.SFACrateBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import static me.therealfickle.rabid.Rabid.id;
+
 public interface RabidBlockEntityTypes {
-    BlockEntityType<FicliumCrateBlockEntity> FICLIUM_CRATE = register("ficlium_crate", FicliumCrateBlockEntity::new, RabidBlocks.FICLIUM_CRATE);
+    BlockEntityType<SFACrateBlockEntity> SFA_CRATE = register("sfa_crate", SFACrateBlockEntity::new, RabidBlocks.SFA_CRATE);
 
     static void init() {
+        BuiltInRegistries.BLOCK_ENTITY_TYPE.addAlias(id("ficlium_crate"), id("sfa_crate"));
     }
 
     static <T extends BlockEntity> BlockEntityType<T> register(String string, FabricBlockEntityTypeBuilder.Factory<T> blockEntitySupplier, Block... blocks) {

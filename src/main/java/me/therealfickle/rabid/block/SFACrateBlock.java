@@ -1,7 +1,7 @@
 package me.therealfickle.rabid.block;
 
 import com.mojang.serialization.MapCodec;
-import me.therealfickle.rabid.block.entity.FicliumCrateBlockEntity;
+import me.therealfickle.rabid.block.entity.SFACrateBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -27,23 +27,23 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
-public class FicliumCrateBlock extends BaseEntityBlock {
-	public static final MapCodec<FicliumCrateBlock> CODEC = simpleCodec(FicliumCrateBlock::new);
+public class SFACrateBlock extends BaseEntityBlock {
+	public static final MapCodec<SFACrateBlock> CODEC = simpleCodec(SFACrateBlock::new);
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
 
 	@Override
-	public MapCodec<FicliumCrateBlock> codec() {
+	public MapCodec<SFACrateBlock> codec() {
 		return CODEC;
 	}
 
-	public FicliumCrateBlock(BlockBehaviour.Properties properties) {
+	public SFACrateBlock(BlockBehaviour.Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
-		if (level instanceof ServerLevel serverLevel && level.getBlockEntity(blockPos) instanceof FicliumCrateBlockEntity crate) {
+		if (level instanceof ServerLevel serverLevel && level.getBlockEntity(blockPos) instanceof SFACrateBlockEntity crate) {
 			player.openMenu(crate);
 			// TODO Use custom stat later
 			player.awardStat(Stats.OPEN_BARREL);
@@ -61,7 +61,7 @@ public class FicliumCrateBlock extends BaseEntityBlock {
 	@Override
 	protected void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
 		BlockEntity blockEntity = serverLevel.getBlockEntity(blockPos);
-		if (blockEntity instanceof FicliumCrateBlockEntity crate) {
+		if (blockEntity instanceof SFACrateBlockEntity crate) {
 			crate.recheckOpen();
 		}
 	}
@@ -69,7 +69,7 @@ public class FicliumCrateBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-		return new FicliumCrateBlockEntity(blockPos, blockState);
+		return new SFACrateBlockEntity(blockPos, blockState);
 	}
 
 	@Override

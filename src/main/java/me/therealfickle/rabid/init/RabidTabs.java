@@ -10,6 +10,7 @@ import net.minecraft.world.item.*;
 import static me.therealfickle.rabid.Rabid.id;
 
 public interface RabidTabs {
+    @SuppressWarnings("unused")
     CreativeModeTab RABID_TAB = register("rabid_tab", FabricItemGroup.builder()
             .icon(() -> new ItemStack(RabidBlocks.FICKLE_PLUSH))
             .title(Component.translatable("itemGroup.rabid.rabid_tab"))
@@ -18,17 +19,17 @@ public interface RabidTabs {
                 output.accept(RabidItems.EXPERIMENTAL_HELR_CALLER);
                 output.accept(RabidItems.POLONIUM_PELLET);
                 output.accept(RabidItems.POLONIUM_NUGGET);
-                output.accept(RabidItems.FICLIUM_INGOT);
-                output.accept(RabidBlocks.FICLIUM_BLOCK);
-                output.accept(RabidBlocks.FICLIUM_CRATE);
-                output.accept(RabidBlocks.POD_DISTRESS_LIGHT);
-
+                output.accept(RabidItems.SFA_INGOT);
+                output.accept(RabidBlocks.SFA_BLOCK);
+                output.accept(RabidBlocks.SFA_CRATE);
+                output.accept(RabidBlocks.SFA_DISTRESS_LIGHT);
 
             })
             .build()
     );
 
     static void init() {
+        // TODO remove
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register((output) -> {
             output.addAfter(Items.DIAMOND, RabidItems.EXPERIMENTAL_HELR_CALLER);
         });

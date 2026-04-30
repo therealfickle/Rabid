@@ -15,9 +15,9 @@ public class BlockLootTables extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        dropSelf(RabidBlocks.FICLIUM_BLOCK);
-        add(RabidBlocks.FICLIUM_CRATE, this::createNameableBlockEntityTable);
-        dropSelf(RabidBlocks.POD_DISTRESS_LIGHT);
+        dropSelf(RabidBlocks.SFA_BLOCK);
+        add(RabidBlocks.SFA_CRATE, this::createNameableBlockEntityTable);
+        dropSelf(RabidBlocks.SFA_DISTRESS_LIGHT);
         dropSelf(RabidBlocks.FICKLE_PLUSH);
     }
 }

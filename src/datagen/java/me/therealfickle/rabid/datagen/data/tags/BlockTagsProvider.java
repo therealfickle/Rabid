@@ -1,6 +1,5 @@
 package me.therealfickle.rabid.datagen.data.tags;
 
-import me.therealfickle.rabid.data.tags.RabidItemTags;
 import me.therealfickle.rabid.init.RabidBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -17,8 +16,8 @@ public class BlockTagsProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(RabidBlocks.FICLIUM_BLOCK)
-                .add(RabidBlocks.FICLIUM_CRATE)
-                .add(RabidBlocks.POD_DISTRESS_LIGHT);
+                .add(RabidBlocks.SFA_BLOCK)
+                .add(RabidBlocks.SFA_CRATE)
+                .add(RabidBlocks.SFA_DISTRESS_LIGHT);
     }
 }

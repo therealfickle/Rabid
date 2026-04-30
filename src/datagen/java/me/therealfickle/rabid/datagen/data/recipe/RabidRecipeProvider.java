@@ -40,10 +40,10 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
             // Check "VanillaRecipeProvider.class" to see how vanilla does things
             nineBlockStorageRecipesWithCustomPacking(
                     RecipeCategory.MISC,
-                    RabidItems.FICLIUM_INGOT,
+                    RabidItems.SFA_INGOT,
                     RecipeCategory.BUILDING_BLOCKS,
-                    RabidBlocks.FICLIUM_BLOCK,
-                    "ficlium_ingot_from_ficlium_block", "ficlium_ingot"
+                    RabidBlocks.SFA_BLOCK,
+                    "sfa_ingot_from_sfa_block", "sfa_ingot"
             );
 
             sixItemStorageRecipes(
