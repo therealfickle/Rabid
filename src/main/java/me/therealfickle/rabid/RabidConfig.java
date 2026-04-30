@@ -11,4 +11,5 @@ public class RabidConfig extends Config {
     }
 
     public boolean HELRCIsFickleOnly = true;
+    public boolean fickleImmuneToHunger = true;
 }

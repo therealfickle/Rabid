@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ConsumableMixin",
-    "FoodPropertiesMixin"
+    "FoodPropertiesMixin",
+    "ServerPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
