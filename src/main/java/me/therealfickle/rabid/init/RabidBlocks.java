@@ -1,6 +1,7 @@
 package me.therealfickle.rabid.init;
 
 import me.therealfickle.rabid.block.FicklePlushBlock;
+import me.therealfickle.rabid.block.MatterReconstructorBlock;
 import me.therealfickle.rabid.block.SFACrateBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -9,10 +10,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LightningRodBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -47,6 +45,7 @@ public interface RabidBlocks {
                     .isSuffocating(Blocks::never)
                     .isViewBlocking(Blocks::never)
     );
+    Block MATTER_RECONSTRUCTOR = register("matter_reconstructor", MatterReconstructorBlock::new, ofFullCopy(SFA_BLOCK));
 
     static void init() {
         addBlockItemAlias(id("ficlium_block"), id("sfa_block"));

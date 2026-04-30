@@ -18,6 +18,7 @@ public class Rabid implements ModInitializer {
         RabidItems.init();
         RabidBlocks.init();
         RabidBlockEntityTypes.init();
+        RabidMenuTypes.init();
         RabidTabs.init();
         RabidAttachments.init();
         RabidStats.init();

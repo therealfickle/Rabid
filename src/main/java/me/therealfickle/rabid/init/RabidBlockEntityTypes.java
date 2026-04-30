@@ -1,5 +1,6 @@
 package me.therealfickle.rabid.init;
 
+import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
 import me.therealfickle.rabid.block.entity.SFACrateBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
@@ -13,6 +14,7 @@ import static me.therealfickle.rabid.Rabid.id;
 
 public interface RabidBlockEntityTypes {
     BlockEntityType<SFACrateBlockEntity> SFA_CRATE = register("sfa_crate", SFACrateBlockEntity::new, RabidBlocks.SFA_CRATE);
+    BlockEntityType<MatterReconstructorBlockEntity> MATTER_RECONSTRUCTOR = register("matter_reconstructor", MatterReconstructorBlockEntity::new, RabidBlocks.MATTER_RECONSTRUCTOR);
 
     static void init() {
         BuiltInRegistries.BLOCK_ENTITY_TYPE.addAlias(Identifier.withDefaultNamespace("ficlium_crate"), id("sfa_crate"));

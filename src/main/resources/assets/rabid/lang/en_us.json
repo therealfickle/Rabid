@@ -6,8 +6,10 @@
   "item.rabid.sfa_block": "SFA Block",
   "item.rabid.sfa_crate": "SFA Crate",
   "item.rabid.sfa_distress_light": "SFA Distress Light",
+  "item.rabid.matter_reconstructor": "Matter Reconstructor",
   "item.rabid.fickle_plush": "Fickle Plush",
   "itemGroup.rabid.rabid_tab": "RABID!",
   "container.rabid.sfa_crate": "SFA Crate",
+  "container.rabid.matter_reconstructor" : "Matter Reconstructor",
   "rabid.helr_caller.unusable": "It seems like this item can't be used right now..."
 }

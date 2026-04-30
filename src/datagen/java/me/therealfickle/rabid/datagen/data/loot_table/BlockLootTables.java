@@ -19,5 +19,6 @@ public class BlockLootTables extends FabricBlockLootTableProvider {
         add(RabidBlocks.SFA_CRATE, this::createNameableBlockEntityTable);
         dropSelf(RabidBlocks.SFA_DISTRESS_LIGHT);
         dropSelf(RabidBlocks.FICKLE_PLUSH);
+        dropSelf(RabidBlocks.MATTER_RECONSTRUCTOR);
     }
 }

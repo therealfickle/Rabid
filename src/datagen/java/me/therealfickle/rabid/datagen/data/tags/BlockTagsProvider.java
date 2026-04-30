@@ -18,6 +18,7 @@ public class BlockTagsProvider extends FabricTagProvider.BlockTagProvider {
         valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(RabidBlocks.SFA_BLOCK)
                 .add(RabidBlocks.SFA_CRATE)
-                .add(RabidBlocks.SFA_DISTRESS_LIGHT);
+                .add(RabidBlocks.SFA_DISTRESS_LIGHT)
+                .add(RabidBlocks.MATTER_RECONSTRUCTOR);
     }
 }

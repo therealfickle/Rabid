@@ -4,7 +4,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 import static me.therealfickle.rabid.Rabid.id;
 
@@ -21,8 +22,8 @@ public interface RabidTabs {
                 output.accept(RabidItems.SFA_INGOT);
                 output.accept(RabidBlocks.SFA_BLOCK);
                 output.accept(RabidBlocks.SFA_CRATE);
+                output.accept(RabidBlocks.MATTER_RECONSTRUCTOR);
                 output.accept(RabidBlocks.SFA_DISTRESS_LIGHT);
-
             })
             .build()
     );
