@@ -4,6 +4,7 @@ import me.therealfickle.rabid.block.entity.SFACrateBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -14,11 +15,11 @@ public interface RabidBlockEntityTypes {
     BlockEntityType<SFACrateBlockEntity> SFA_CRATE = register("sfa_crate", SFACrateBlockEntity::new, RabidBlocks.SFA_CRATE);
 
     static void init() {
-        BuiltInRegistries.BLOCK_ENTITY_TYPE.addAlias(id("ficlium_crate"), id("sfa_crate"));
+        BuiltInRegistries.BLOCK_ENTITY_TYPE.addAlias(Identifier.withDefaultNamespace("ficlium_crate"), id("sfa_crate"));
     }
 
     static <T extends BlockEntity> BlockEntityType<T> register(String string, FabricBlockEntityTypeBuilder.Factory<T> blockEntitySupplier, Block... blocks) {
-        return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, string, FabricBlockEntityTypeBuilder.create(blockEntitySupplier, blocks).build());
+        return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, id(string), FabricBlockEntityTypeBuilder.create(blockEntitySupplier, blocks).build());
     }
 
 }
