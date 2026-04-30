@@ -5,7 +5,10 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "ContextualInfoMixin",
-    "GuiMixin"
+    "GuiMixin",
+    "appleskin.HeldFoodCacheMixin",
+    "appleskin.HUDOverlayHandlerMixin",
+    "appleskin.TooltipOverlayHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

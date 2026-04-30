@@ -18,13 +18,16 @@ import static me.therealfickle.rabid.Rabid.id;
 public interface RabidItems {
     Item POLONIUM_PELLET = register("polonium_pellet",
             new Item.Properties()
+                    .food(RabidItemData.POLONIUM_PELLET)
                     .component(DataComponents.CONSUMABLE, RabidItemData.FUEL_CONSUMABLE)
-                    .component(RabidDataComponents.FICKLE_FUEL, RabidItemData.POLONIUM_PELLET)
+                    .component(RabidDataComponents.FICKLE_FUEL, RabidItemData.FUEL)
     );
+
     Item POLONIUM_NUGGET = register("polonium_nugget",
             new Item.Properties()
+                    .food(RabidItemData.POLONIUM_NUGGET)
                     .component(DataComponents.CONSUMABLE, RabidItemData.FUEL_CONSUMABLE)
-                    .component(RabidDataComponents.FICKLE_FUEL, RabidItemData.POLONIUM_NUGGET)
+                    .component(RabidDataComponents.FICKLE_FUEL, RabidItemData.FUEL)
     );
 
     Item FICLIUM_INGOT = register("ficlium_ingot", new Item.Properties());
