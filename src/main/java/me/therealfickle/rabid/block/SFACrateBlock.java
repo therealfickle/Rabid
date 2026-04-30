@@ -2,10 +2,10 @@ package me.therealfickle.rabid.block;
 
 import com.mojang.serialization.MapCodec;
 import me.therealfickle.rabid.block.entity.SFACrateBlockEntity;
+import me.therealfickle.rabid.init.RabidStats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
@@ -45,8 +45,7 @@ public class SFACrateBlock extends BaseEntityBlock {
 	protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
 		if (level instanceof ServerLevel serverLevel && level.getBlockEntity(blockPos) instanceof SFACrateBlockEntity crate) {
 			player.openMenu(crate);
-			// TODO Use custom stat later
-			player.awardStat(Stats.OPEN_BARREL);
+			player.awardStat(RabidStats.OPEN_SFA_CRATE);
 			PiglinAi.angerNearbyPiglins(serverLevel, player, true);
 		}
 
