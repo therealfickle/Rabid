@@ -13,12 +13,12 @@ public interface RabidItemData {
 
     FoodProperties POLONIUM_PELLET = new FoodProperties.Builder()
             .nutrition(6)
-            .saturationModifier(0.6F)
+            .saturationModifier(1.2F)
             .build();
 
     FoodProperties POLONIUM_NUGGET = new FoodProperties.Builder()
             .nutrition(1)
-            .saturationModifier(0.1F)
+            .saturationModifier(0.4F)
             .build();
 
     Consumable FUEL_CONSUMABLE = Consumable.builder()
