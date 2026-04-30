@@ -85,7 +85,7 @@ dependencies {
     modImplementation "org.teamvoided:creative_works:0.5.1+1.21.11"
     modImplementation "me.fzzyhmstrs:fzzy_config:0.7.6+1.21.11"
 
-    modCompileOnly("squeek.appleskin:appleskin-fabric:${project.appleskin_version}"){
+    modImplementation("squeek.appleskin:appleskin-fabric:${project.appleskin_version}"){
         exclude module: "modmenu"
     }
 }

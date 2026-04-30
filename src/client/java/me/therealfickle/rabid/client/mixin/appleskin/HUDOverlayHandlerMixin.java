@@ -23,14 +23,12 @@ public class HUDOverlayHandlerMixin {
         return RabidAttachments.isInFickleMode(mc.player) ? RabidSprites.APPLESKIN_SPRITES : texture;
     }
 
-
-
     @ModifyArg(
             method = "drawHungerOverlay(Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/client/Minecraft;IIFZI)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V")
     )
     Identifier modifyHungerTexture(Identifier texture, @Local(argsOnly = true) Minecraft mc) {
-        return RabidAttachments.isInFickleMode(mc.player) ? RabidSprites.getFuelTexture(texture, null) : texture;
+        return RabidAttachments.isInFickleMode(mc.player) ? RabidSprites.getFuelTexture(texture) : texture;
     }
 
 }

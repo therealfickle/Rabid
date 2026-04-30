@@ -9,7 +9,6 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
-import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -26,29 +25,6 @@ import java.util.function.Supplier;
 
 @Mixin(Gui.class)
 public abstract class GuiMixin {
-    @Shadow
-    @Final
-    private static Identifier FOOD_EMPTY_HUNGER_SPRITE;
-
-    @Shadow
-    @Final
-    private static Identifier FOOD_HALF_SPRITE;
-
-    @Shadow
-    @Final
-    private static Identifier FOOD_FULL_SPRITE;
-
-    @Shadow
-    @Final
-    private static Identifier FOOD_EMPTY_SPRITE;
-
-    @Shadow
-    @Final
-    private static Identifier FOOD_FULL_HUNGER_SPRITE;
-
-    @Shadow
-    @Final
-    private static Identifier FOOD_HALF_HUNGER_SPRITE;
 
     @Shadow
     @Final
@@ -64,29 +40,7 @@ public abstract class GuiMixin {
 
     @ModifyArg(method = "renderFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V"))
     Identifier changeFoodSprites(Identifier identifier, @Local(argsOnly = true) Player player) {
-        var fickleMode = RabidAttachments.isInFickleMode(player);
-        if (fickleMode) {
-            if (identifier.equals(FOOD_EMPTY_HUNGER_SPRITE)) {
-                return RabidSprites.HUNGER_FUEL_EMPTY;
-            }
-            if (identifier.equals(FOOD_HALF_HUNGER_SPRITE)) {
-                return RabidSprites.HUNGER_FUEL_HALF;
-            }
-            if (identifier.equals(FOOD_FULL_HUNGER_SPRITE)) {
-                return RabidSprites.HUNGER_FUEL;
-            }
-            if (identifier.equals(FOOD_EMPTY_SPRITE)) {
-                return RabidSprites.FUEL_EMPTY;
-            }
-            if (identifier.equals(FOOD_HALF_SPRITE)) {
-                return RabidSprites.FUEL_HALF;
-            }
-            if (identifier.equals(FOOD_FULL_SPRITE)) {
-                return RabidSprites.FUEL;
-            }
-        }
-
-        return identifier;
+        return RabidAttachments.isInFickleMode(player) ? RabidSprites.getFuelTexture(identifier) : identifier;
     }
 
     @Inject(method = "nextContextualInfoState", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;hasExperience()Z"), cancellable = true)

@@ -22,7 +22,7 @@ public class TooltipOverlayHandlerMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V")
     )
     Identifier modifyFoodIcons1(Identifier texture, @Local ItemStack itemStack) {
-        return getFuelTexture(texture, itemStack);
+        return renderAsFuel(itemStack) ? getFuelTexture(texture) : texture;
     }
 
     @ModifyArg(
@@ -30,7 +30,7 @@ public class TooltipOverlayHandlerMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V")
     )
     Identifier modifyFoodIcons2(Identifier texture, @Local ItemStack itemStack) {
-        return getFuelTexture(texture, itemStack);
+        return renderAsFuel(itemStack) ? getFuelTexture(texture) : texture;
     }
 
     @ModifyArg(
