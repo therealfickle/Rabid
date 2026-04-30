@@ -1,7 +1,6 @@
 package me.therealfickle.rabid.init;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -29,10 +28,6 @@ public interface RabidTabs {
     );
 
     static void init() {
-        // TODO remove
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register((output) -> {
-            output.addAfter(Items.DIAMOND, RabidItems.EXPERIMENTAL_HELR_CALLER);
-        });
     }
 
     static CreativeModeTab register(String name, CreativeModeTab tab) {
