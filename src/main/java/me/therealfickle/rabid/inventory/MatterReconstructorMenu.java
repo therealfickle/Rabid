@@ -1,7 +1,6 @@
 package me.therealfickle.rabid.inventory;
 
 import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
-import me.therealfickle.rabid.init.RabidItems;
 import me.therealfickle.rabid.init.RabidMenuTypes;
 import me.therealfickle.rabid.util.MRCache;
 import net.minecraft.core.NonNullList;
@@ -19,14 +18,14 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
     private static final int USE_ROW_SLOT_END = 45;
 
     private final ResultContainer resultContainer = new ResultContainer();
-    private final ContainerData containerData;
+    private final ContainerData mrData;
     private final Player player;
     private final CraftingContainer container;
 
     public MatterReconstructorMenu(int i, Inventory inventory) {
         super(RabidMenuTypes.MATTER_RECONSTRUCTOR, i);
         player = inventory.player;
-        containerData = new SimpleContainerData(10);
+        mrData = new SimpleContainerData(10);
         container = rabid_createTransientCraftingContainer(this, 3, 3, NonNullList.withSize(MatterReconstructorBlockEntity.SLOTS, ItemStack.EMPTY));
         addSlots(inventory);
     }
@@ -34,7 +33,7 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
     public MatterReconstructorMenu(int i, Inventory inventory, CraftingContainer cContainer, ContainerData data) {
         super(RabidMenuTypes.MATTER_RECONSTRUCTOR, i);
         player = inventory.player;
-        containerData = data;
+        mrData = data;
         container = cContainer;
         checkContainerSize(container, MatterReconstructorBlockEntity.SLOTS);
         container.startOpen(inventory.player);
@@ -43,14 +42,7 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
     }
 
     private void addSlots(Inventory inventory) {
-
-        addSlot(new Slot(container, 0, 26, 17 + 18) {
-            @Override
-            public boolean mayPlace(ItemStack itemStack) {
-                return itemStack.is(RabidItems.POLONIUM_PELLET);
-            }
-        });
-
+        addSlot(new MRFuelSlot(container, 0, 26, 17 + 18));
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 int slotId = x + y * 3;
@@ -60,7 +52,7 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
 
         addStandardInventorySlots(inventory, 8, 84);
         addSlot(new NonInteractiveResultSlot(resultContainer, 0, 134, 35));
-        addDataSlots(containerData);
+        addDataSlots(mrData);
         refreshRecipeResult();
     }
 
@@ -115,6 +107,16 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
     public ItemStack getResultItem() {
         return resultContainer.getItem(0);
     }
+
+    public int getAssemblyTime() {
+        return mrData.get(0);
+    }
+
+    public int getFuel() {
+        return mrData.get(1);
+    }
+
+
 
     public Container getContainer() {
         return container;

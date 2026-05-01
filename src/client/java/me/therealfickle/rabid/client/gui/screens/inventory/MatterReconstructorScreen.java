@@ -8,9 +8,11 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 
+import static me.therealfickle.rabid.Rabid.CONFIG;
 import static me.therealfickle.rabid.Rabid.id;
 
 @Environment(EnvType.CLIENT)
@@ -34,10 +36,25 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
 
 
     @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        super.render(guiGraphics, i, j, f);
+    public void render(GuiGraphics guiGraphics, int x, int y, float tickDelta) {
+        super.render(guiGraphics, x, y, tickDelta);
         renderLight(guiGraphics);
-        renderTooltip(guiGraphics, i, j);
+        renderFuel(guiGraphics);
+        renderTooltip(guiGraphics, x, y);
+    }
+
+    private void renderFuel(GuiGraphics guiGraphics) {
+        int x = width / 2 - 63;
+        int y = height / 2 - 55;
+
+        var sWidth = 18;
+        var max = (int) CONFIG.matterReconstructor.maxFuelStorage.get();
+
+        int fuelLevel = menu.getFuel();
+        int drawAmount = Mth.clamp((sWidth * fuelLevel + max - 1) / max, 0, sWidth);
+        if (drawAmount > 0) {
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, FUEL_FULL, 18, 4, 0, 0, x, y, drawAmount, 4);
+        }
     }
 
     private void renderLight(GuiGraphics guiGraphics) {

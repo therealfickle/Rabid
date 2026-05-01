@@ -8,6 +8,7 @@ import static me.therealfickle.rabid.Rabid.id;
 
 public interface RabidItemTags {
     TagKey<Item> ADDITIONAL_FICKLE_FUELS = key("additional_fickle_fuels");
+    TagKey<Item> MATTER_RECONSTRUCTOR_FUELS = key("matter_reconstructor_fuels");
 
     static TagKey<Item> key(String id) {
         return TagKey.create(Registries.ITEM, id(id));

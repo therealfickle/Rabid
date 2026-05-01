@@ -19,6 +19,8 @@ public class ItemTagsProvider extends FabricTagProvider.ItemTagProvider {
     protected void addTags(HolderLookup.Provider provider) {
         valueLookupBuilder(RabidItemTags.ADDITIONAL_FICKLE_FUELS)
                 .add(Items.OMINOUS_BOTTLE);
+        valueLookupBuilder(RabidItemTags.MATTER_RECONSTRUCTOR_FUELS)
+                .add(RabidItems.POLONIUM_PELLET);
         valueLookupBuilder(ConventionalItemTags.INGOTS)
                 .add(RabidItems.SFA_INGOT);
     }

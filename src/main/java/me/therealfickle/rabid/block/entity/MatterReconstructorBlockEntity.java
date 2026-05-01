@@ -1,5 +1,6 @@
 package me.therealfickle.rabid.block.entity;
 
+import me.therealfickle.rabid.data.tags.RabidItemTags;
 import me.therealfickle.rabid.init.RabidBlockEntityTypes;
 import me.therealfickle.rabid.inventory.MatterReconstructorMenu;
 import net.minecraft.core.BlockPos;
@@ -13,10 +14,13 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+
+import static me.therealfickle.rabid.Rabid.CONFIG;
 
 public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEntity implements CraftingContainer {
     private static final Component DEFAULT_NAME = Component.translatable("container.rabid.matter_reconstructor");
@@ -96,6 +100,17 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
 
     @Override
     public void fillStackedContents(StackedItemContents stackedItemContents) {
+    }
 
+    public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, MatterReconstructorBlockEntity matterReconstructor) {
+        if (matterReconstructor.fuel < 0) {
+            matterReconstructor.fuel = 0;
+        }
+        ItemStack itemStack = matterReconstructor.items.get(0);
+        if (CONFIG.matterReconstructor.hasSpaceForFuel(matterReconstructor.fuel) && itemStack.is(RabidItemTags.MATTER_RECONSTRUCTOR_FUELS)) {
+            matterReconstructor.fuel += CONFIG.matterReconstructor.fuelItemValue.get();
+            itemStack.shrink(1);
+            setChanged(level, blockPos, blockState);
+        }
     }
 }

@@ -2,6 +2,7 @@ package me.therealfickle.rabid.block;
 
 import com.mojang.serialization.MapCodec;
 import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
+import me.therealfickle.rabid.init.RabidBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -76,8 +79,9 @@ public class MatterReconstructorBlock extends BaseEntityBlock {
 		return InteractionResult.SUCCESS;
 	}
 
-/*	@Override
-	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-		return super.getTicker(level, state, blockEntityType);
-	}*/
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
+		return level.isClientSide() ? null : createTickerHelper(type, RabidBlockEntityTypes.MATTER_RECONSTRUCTOR, MatterReconstructorBlockEntity::serverTick);
+	}
 }
