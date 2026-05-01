@@ -20,6 +20,7 @@ public class RabidConfig extends Config {
     public static class MatterReconstructorSection extends ConfigSection {
         public ValidatedByte maxFuelStorage = new ValidatedByte((byte) 2, Byte.MAX_VALUE, (byte) 1);
         public ValidatedByte fuelItemValue = new ValidatedByte((byte) 2, Byte.MAX_VALUE, (byte) 1);
+        public ValidatedByte fuelPerRecipe = new ValidatedByte((byte) 1, Byte.MAX_VALUE, (byte) 1);
 
         public boolean hasSpaceForFuel(int fuelLevel) {
             return fuelLevel + fuelItemValue.get() <= maxFuelStorage.get();

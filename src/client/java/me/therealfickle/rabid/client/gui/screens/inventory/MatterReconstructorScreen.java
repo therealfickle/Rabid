@@ -77,7 +77,9 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
         int x = (width - imageWidth) / 2;
-        int l = (height - imageHeight) / 2;
-        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_TEXTURE, x, l, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
+        int y = (height - imageHeight) / 2;
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_TEXTURE, x, y, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
+        var text = "Assembly Time: " + (menu.getAssemblyTime() / 20) + "s";
+        guiGraphics.drawString(font, text, (width / 2) - font.width(text) / 2, y - 10, 0xff_ffffff);
     }
 }
