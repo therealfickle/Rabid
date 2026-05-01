@@ -31,6 +31,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
     private NonNullList<ItemStack> items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
     int assemblyTime = 0;
     int fuel = 0;
+    public boolean isPowered = false;
 
     protected final ContainerData containerData = new MRContainerData(this);
 
@@ -80,6 +81,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
 
     public static final String ASSEMBLY_TIME = "assembly_time";
     public static final String FUEL = "fuel";
+    public static final String IS_POWERED = "is_powered";
 
     @Override
     protected void loadAdditional(ValueInput input) {
@@ -88,6 +90,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
         ContainerHelper.loadAllItems(input, items);
         assemblyTime = input.getShortOr(ASSEMBLY_TIME, (short) 0);
         fuel = input.getByteOr(FUEL, (byte) 0);
+        isPowered = input.getBooleanOr(IS_POWERED, false);
     }
 
     @Override
@@ -96,6 +99,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
         ContainerHelper.saveAllItems(output, items);
         output.putShort(ASSEMBLY_TIME, (short) assemblyTime);
         output.putByte(FUEL, (byte) fuel);
+        output.putBoolean(IS_POWERED, isPowered);
     }
 
     @Override
@@ -106,7 +110,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
         if (matterReconstructor.fuel < 0) {
             matterReconstructor.fuel = 0;
         }
-        ItemStack itemStack = matterReconstructor.items.get(0);
+        var itemStack = matterReconstructor.items.getFirst();
         if (CONFIG.matterReconstructor.hasSpaceForFuel(matterReconstructor.fuel) && itemStack.is(RabidItemTags.MATTER_RECONSTRUCTOR_FUELS)) {
             matterReconstructor.fuel += CONFIG.matterReconstructor.fuelItemValue.get();
             itemStack.shrink(1);

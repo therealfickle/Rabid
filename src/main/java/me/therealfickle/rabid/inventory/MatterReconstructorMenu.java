@@ -1,5 +1,6 @@
 package me.therealfickle.rabid.inventory;
 
+import me.therealfickle.rabid.block.entity.MRContainerData;
 import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
 import me.therealfickle.rabid.init.RabidMenuTypes;
 import me.therealfickle.rabid.util.MRCache;
@@ -25,7 +26,7 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
     public MatterReconstructorMenu(int i, Inventory inventory) {
         super(RabidMenuTypes.MATTER_RECONSTRUCTOR, i);
         player = inventory.player;
-        mrData = new SimpleContainerData(10);
+        mrData = new SimpleContainerData(MRContainerData.DATA_COUNT);
         container = rabid_createTransientCraftingContainer(this, 3, 3, NonNullList.withSize(MatterReconstructorBlockEntity.SLOTS, ItemStack.EMPTY));
         addSlots(inventory);
     }
@@ -108,6 +109,10 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
         return resultContainer.getItem(0);
     }
 
+    public boolean hasResult() {
+        return !getResultItem().isEmpty();
+    }
+
     public int getAssemblyTime() {
         return mrData.get(0);
     }
@@ -116,7 +121,9 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
         return mrData.get(1);
     }
 
-
+    public boolean isPowered() {
+        return mrData.get(2) == 1;
+    }
 
     public Container getContainer() {
         return container;

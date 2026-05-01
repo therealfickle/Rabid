@@ -10,7 +10,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.NonInteractiveResultSlot;
+import net.minecraft.world.inventory.Slot;
 
 import static me.therealfickle.rabid.Rabid.CONFIG;
 import static me.therealfickle.rabid.Rabid.id;
@@ -18,14 +19,13 @@ import static me.therealfickle.rabid.Rabid.id;
 @Environment(EnvType.CLIENT)
 public class MatterReconstructorScreen extends AbstractContainerScreen<MatterReconstructorMenu> {
     private static final Identifier FUEL_FULL = id("container/matter_reconstructor/fuel_full");
+    private static final Identifier DISABLED_OUTPUT = id("container/matter_reconstructor/disabled_output");
     private static final Identifier LIGHT_GREEN = id("container/matter_reconstructor/light_green");
     private static final Identifier LIGHT_RED = id("container/matter_reconstructor/light_red");
     private static final Identifier CONTAINER_TEXTURE = id("textures/gui/container/matter_reconstructor.png");
-    private final Player player;
 
     public MatterReconstructorScreen(MatterReconstructorMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component);
-        player = inventory.player;
     }
 
     @Override
@@ -58,10 +58,20 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
     }
 
     private void renderLight(GuiGraphics guiGraphics) {
+        if (!menu.isPowered()) return;
         int x = width / 2 + 50;
         int y = height / 2 - 22;
-        Identifier tex = menu.getResultItem().isEmpty() ? LIGHT_RED : LIGHT_GREEN;
+        Identifier tex = menu.hasResult() ? LIGHT_GREEN : LIGHT_RED;
         guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, tex, x, y, 8, 8);
+    }
+
+    @Override
+    protected void renderSlot(GuiGraphics guiGraphics, Slot slot, int x, int y) {
+        if (menu.isPowered() && !menu.hasResult() && slot instanceof NonInteractiveResultSlot) {
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, DISABLED_OUTPUT, slot.x - 1, slot.y - 1, 18, 18);
+        } else {
+            super.renderSlot(guiGraphics, slot, x, y);
+        }
     }
 
     @Override
