@@ -79,7 +79,7 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_TEXTURE, x, y, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
-        var text = "Assembly Time: " + (menu.getAssemblyTime() / 20) + "s";
-        guiGraphics.drawString(font, text, (width / 2) - font.width(text) / 2, y - 10, 0xff_ffffff);
+        var text = "Assembly Time: %3.1fs".formatted(menu.getAssemblyTime() / 20.0);
+        guiGraphics.drawString(font, text, (width / 2) - font.width(text) / 2, y - 10, 0xff_f0f0f0);
     }
 }
