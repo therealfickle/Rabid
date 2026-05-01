@@ -11,6 +11,7 @@ import static me.therealfickle.rabid.Rabid.id;
 public interface RabidStats {
 
     Identifier OPEN_SFA_CRATE = register("open_sfa_crate", StatFormatter.DEFAULT);
+    Identifier INTERACT_WITH_FICKLE_PLUSH = register("interact_with_fickle_plush", StatFormatter.DEFAULT);
 
     static void init() {
     }

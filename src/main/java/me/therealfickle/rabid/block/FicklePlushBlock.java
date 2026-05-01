@@ -1,5 +1,6 @@
 package me.therealfickle.rabid.block;
 
+import me.therealfickle.rabid.init.RabidStats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -37,7 +38,7 @@ public class FicklePlushBlock extends Block {
     @Override
     protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (!level.isClientSide()) {
-            // TODO add stat for interacted with plush
+            player.awardStat(RabidStats.INTERACT_WITH_FICKLE_PLUSH);
             level.playSound(null, blockPos, SoundEvents.BAT_AMBIENT, SoundSource.BLOCKS);
         }
 

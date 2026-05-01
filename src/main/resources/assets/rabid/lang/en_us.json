@@ -11,5 +11,7 @@
   "itemGroup.rabid.rabid_tab": "RABID!",
   "container.rabid.sfa_crate": "SFA Crate",
   "container.rabid.matter_reconstructor" : "Matter Reconstructor",
-  "rabid.helr_caller.unusable": "It seems like this item can't be used right now..."
+  "rabid.helr_caller.unusable": "It seems like this item can't be used right now...",
+  "stat.rabid.open_sfa_crate": "SFA Crates Opened",
+  "stat.rabid.interact_with_fickle_plush": "Interactions with Fickle Plush"
 }
