@@ -6,7 +6,8 @@
   "mixins": [
     "ConsumableMixin",
     "FoodPropertiesMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "TransientCraftingContainerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

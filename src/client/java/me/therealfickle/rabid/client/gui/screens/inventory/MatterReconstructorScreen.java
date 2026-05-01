@@ -11,11 +11,14 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 
+import static me.therealfickle.rabid.Rabid.id;
+
 @Environment(EnvType.CLIENT)
 public class MatterReconstructorScreen extends AbstractContainerScreen<MatterReconstructorMenu> {
-    private static final Identifier POWERED_REDSTONE_LOCATION_SPRITE = Identifier.withDefaultNamespace("container/crafter/powered_redstone");
-    private static final Identifier UNPOWERED_REDSTONE_LOCATION_SPRITE = Identifier.withDefaultNamespace("container/crafter/unpowered_redstone");
-    private static final Identifier CONTAINER_TEXTURE = Identifier.withDefaultNamespace("textures/gui/container/crafter.png");
+    private static final Identifier FUEL_FULL = id("container/matter_reconstructor/fuel_full");
+    private static final Identifier LIGHT_GREEN = id("container/matter_reconstructor/light_green");
+    private static final Identifier LIGHT_RED = id("container/matter_reconstructor/light_red");
+    private static final Identifier CONTAINER_TEXTURE = id("textures/gui/container/matter_reconstructor.png");
     private final Player player;
 
     public MatterReconstructorScreen(MatterReconstructorMenu menu, Inventory inventory, Component component) {
@@ -33,16 +36,15 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
     @Override
     public void render(GuiGraphics guiGraphics, int i, int j, float f) {
         super.render(guiGraphics, i, j, f);
-        renderRedstone(guiGraphics);
+        renderLight(guiGraphics);
         renderTooltip(guiGraphics, i, j);
     }
 
-    private void renderRedstone(GuiGraphics guiGraphics) {
-        int x = width / 2 + 9;
-        int y = height / 2 - 48;
-        @SuppressWarnings("ConstantConditionalExpression")
-        Identifier tex = true ? POWERED_REDSTONE_LOCATION_SPRITE : UNPOWERED_REDSTONE_LOCATION_SPRITE;
-        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, tex, x, y, 16, 16);
+    private void renderLight(GuiGraphics guiGraphics) {
+        int x = width / 2 + 50;
+        int y = height / 2 - 22;
+        Identifier tex = menu.getResultItem().isEmpty() ? LIGHT_RED : LIGHT_GREEN;
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, tex, x, y, 8, 8);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package me.therealfickle.rabid.inventory;
 
+import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
+import me.therealfickle.rabid.init.RabidItems;
 import me.therealfickle.rabid.init.RabidMenuTypes;
 import me.therealfickle.rabid.util.MRCache;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -9,6 +12,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+
+import static me.therealfickle.rabid.mixins.TransientCraftingContainerAccessor.rabid_createTransientCraftingContainer;
 
 public class MatterReconstructorMenu extends AbstractContainerMenu implements ContainerListener {
     private static final int USE_ROW_SLOT_END = 45;
@@ -22,26 +27,34 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
         super(RabidMenuTypes.MATTER_RECONSTRUCTOR, i);
         player = inventory.player;
         containerData = new SimpleContainerData(10);
-        container = new TransientCraftingContainer(this, 3, 3);
+        container = rabid_createTransientCraftingContainer(this, 3, 3, NonNullList.withSize(MatterReconstructorBlockEntity.SLOTS, ItemStack.EMPTY));
         addSlots(inventory);
     }
 
-    public MatterReconstructorMenu(int i, Inventory inventory, CraftingContainer craftingContainer, ContainerData data) {
+    public MatterReconstructorMenu(int i, Inventory inventory, CraftingContainer cContainer, ContainerData data) {
         super(RabidMenuTypes.MATTER_RECONSTRUCTOR, i);
         player = inventory.player;
         containerData = data;
-        container = craftingContainer;
-        checkContainerSize(craftingContainer, 9);
-        craftingContainer.startOpen(inventory.player);
+        container = cContainer;
+        checkContainerSize(container, MatterReconstructorBlockEntity.SLOTS);
+        container.startOpen(inventory.player);
         addSlots(inventory);
         addSlotListener(this);
     }
 
     private void addSlots(Inventory inventory) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                int k = j + i * 3;
-                addSlot(new Slot(container, k, 26 + j * 18, 17 + i * 18));
+
+        addSlot(new Slot(container, 0, 26, 17 + 18) {
+            @Override
+            public boolean mayPlace(ItemStack itemStack) {
+                return itemStack.is(RabidItems.POLONIUM_PELLET);
+            }
+        });
+
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                int slotId = x + y * 3;
+                addSlot(new Slot(container, slotId + 1, 62 + x * 18, 17 + y * 18));
             }
         }
 
@@ -51,18 +64,20 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
         refreshRecipeResult();
     }
 
+    public static final int MAX_SLOTS = MatterReconstructorBlockEntity.SLOTS;
+
     @Override
-    public ItemStack quickMoveStack(Player player, int i) {
+    public ItemStack quickMoveStack(Player player, int slotId) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = slots.get(i);
+        Slot slot = slots.get(slotId);
         if (slot != null && slot.hasItem()) {
             ItemStack itemStack2 = slot.getItem();
             itemStack = itemStack2.copy();
-            if (i < 9) {
-                if (!moveItemStackTo(itemStack2, 9, USE_ROW_SLOT_END, true)) {
+            if (slotId < MAX_SLOTS) {
+                if (!moveItemStackTo(itemStack2, MAX_SLOTS, USE_ROW_SLOT_END + 1, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!moveItemStackTo(itemStack2, 0, 9, false)) {
+            } else if (!moveItemStackTo(itemStack2, 0, MAX_SLOTS, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -95,6 +110,10 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
                     .orElse(ItemStack.EMPTY);
             resultContainer.setItem(0, itemStack);
         }
+    }
+
+    public ItemStack getResultItem() {
+        return resultContainer.getItem(0);
     }
 
     public Container getContainer() {
