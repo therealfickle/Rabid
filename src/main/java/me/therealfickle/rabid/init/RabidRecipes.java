@@ -1,6 +1,7 @@
 package me.therealfickle.rabid.init;
 
 import me.therealfickle.rabid.item.crafting.ReconstructorRecipe;
+import me.therealfickle.rabid.item.crafting.ShapelessReconstructorRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.Recipe;
@@ -13,12 +14,13 @@ import static me.therealfickle.rabid.Rabid.id;
 public interface RabidRecipes {
 
     RecipeType<ReconstructorRecipe> RECONSTRUCTING = register("reconstructing");
-    RecipeSerializer<ReconstructorRecipe> RECONSTRUCTING_SHAPELESS =
-            register("reconstructing_shapeless", new ReconstructorRecipe.Serializer());
+    RecipeSerializer<ShapelessReconstructorRecipe> RECONSTRUCTING_SHAPELESS =
+            register("reconstructing_shapeless", new ShapelessReconstructorRecipe.Serializer(200));
 
-
-    RecipeBookCategory RECONSTRUCTING_CAT = registerCategory("reconstructing");
-
+    RecipeBookCategory RECONSTRUCTING_BUILDING = registerCategory("reconstructing_building");
+    RecipeBookCategory RECONSTRUCTING_MATERIALS = registerCategory("reconstructing_materials");
+    RecipeBookCategory RECONSTRUCTING_EQUIPMENT = registerCategory("reconstructing_equipment");
+    RecipeBookCategory RECONSTRUCTING_MISC = registerCategory("reconstructing_misc");
 
     static void init() {
     }

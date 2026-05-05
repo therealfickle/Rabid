@@ -1,8 +1,9 @@
 package me.therealfickle.rabid.datagen.data.recipe;
 
-import me.therealfickle.rabid.data.recipes.ReconstructorRecipeBuilder;
+import me.therealfickle.rabid.data.recipes.ShapelessReconstructorRecipeBuilder;
 import me.therealfickle.rabid.init.RabidBlocks;
 import me.therealfickle.rabid.init.RabidItems;
+import me.therealfickle.rabid.item.crafting.ReconstructingBookCategory;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
@@ -46,12 +47,13 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
         public void buildRecipes() {
             // RECIPE HERE !!!!
             // Check "VanillaRecipeProvider.class" to see how vanilla does things
-            nineBlockStorageRecipesWithCustomPacking(
+            nineBlockStorageRecipesRecipesWithCustomUnpacking(
                     RecipeCategory.MISC,
                     RabidItems.SFA_INGOT,
                     RecipeCategory.BUILDING_BLOCKS,
                     RabidBlocks.SFA_BLOCK,
-                    "sfa_ingot_from_sfa_block", "sfa_ingot"
+                    "sfa_ingot_from_sfa_block",
+                    "sfa_block"
             );
 
             sixItemStorageRecipes(
@@ -64,20 +66,27 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
                     "polonium_pellet"
             );
 
-            reconstructor(RecipeCategory.MISC, RabidItems.SFA_INGOT)
+            reconstructorShapeless(ReconstructingBookCategory.MATERIALS, 200, RabidItems.SFA_INGOT)
                     .requires(Items.IRON_INGOT, 4)
                     .requires(Items.OBSIDIAN, 4)
-                    .unlockedBy(RecipeProvider.getHasName(Items.OBSIDIAN), has(Items.OBSIDIAN))
-                    .save(output(), "testing_recipe_now");
+                    .unlockedBy(getHasName(Items.OBSIDIAN), has(Items.OBSIDIAN))
+                    .save(output());
+
+
+            reconstructorShapeless(ReconstructingBookCategory.MATERIALS, 200, RabidBlocks.SFA_CRATE)
+                    .requires(RabidItems.SFA_INGOT, 4)
+                    .requires(Items.CHEST)
+                    .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
+                    .save(output());
 
         }
 
-        public ReconstructorRecipeBuilder reconstructor(RecipeCategory recipeCategory, ItemLike itemLike) {
-            return ReconstructorRecipeBuilder.reconstructor(items2, recipeCategory, itemLike);
+        public ShapelessReconstructorRecipeBuilder reconstructorShapeless(ReconstructingBookCategory recipeCategory, int assemblyTime, ItemLike itemLike) {
+            return ShapelessReconstructorRecipeBuilder.reconstructorShapeless(items2, recipeCategory, assemblyTime, itemLike);
         }
 
-        public ReconstructorRecipeBuilder reconstructor(RecipeCategory recipeCategory, ItemLike itemLike, int i) {
-            return ReconstructorRecipeBuilder.reconstructor(items2, recipeCategory, itemLike, i);
+        public ShapelessReconstructorRecipeBuilder reconstructorShapeless(ReconstructingBookCategory recipeCategory, int assemblyTime, ItemLike itemLike, int i) {
+            return ShapelessReconstructorRecipeBuilder.reconstructorShapeless(items2, recipeCategory, assemblyTime, itemLike, i);
         }
 
         public RecipeOutput output() {

@@ -181,8 +181,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
 
             setChanged(level, blockPos, blockState);
         } else if (hasResult && reconstructor.fuel > 0) {
-            // TODO make this pull from the recipe
-            reconstructor.assemblyTime = 400;
+            reconstructor.assemblyTime = optional.get().value().getAssemblyTime();
             setChanged(level, blockPos, blockState);
         }
     }

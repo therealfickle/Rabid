@@ -8,8 +8,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.Nullable;
 
-import static net.minecraft.data.recipes.RecipeProvider.getSimpleRecipeName;
-
 public interface RecipeHelpers {
     static void sixItemStorageRecipes(
             RabidRecipeProvider.RabidRecipeGen provider,
@@ -20,7 +18,7 @@ public interface RecipeHelpers {
             String string,
             String string2
     ) {
-        sixItemStorageRecipes(provider, recipeCategory, itemLike, recipeCategory2, itemLike2, string, string2, getSimpleRecipeName(itemLike), null);
+        sixItemStorageRecipes(provider, recipeCategory, itemLike, recipeCategory2, itemLike2, string, null, string2, null);
     }
 
     static void sixItemStorageRecipes(
