@@ -1,10 +1,12 @@
 package me.therealfickle.rabid.client.gui.screens.inventory;
 
+import me.therealfickle.rabid.client.gui.screens.MatterReconstructorRecipeBookComponent;
 import me.therealfickle.rabid.inventory.MatterReconstructorMenu;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.navigation.ScreenPosition;
+import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -17,7 +19,7 @@ import static me.therealfickle.rabid.Rabid.CONFIG;
 import static me.therealfickle.rabid.Rabid.id;
 
 @Environment(EnvType.CLIENT)
-public class MatterReconstructorScreen extends AbstractContainerScreen<MatterReconstructorMenu> {
+public class MatterReconstructorScreen extends AbstractRecipeBookScreen<MatterReconstructorMenu> {
     private static final Identifier FUEL_FULL = id("container/matter_reconstructor/fuel_full");
     private static final Identifier DISABLED_OUTPUT = id("container/matter_reconstructor/disabled_output");
     private static final Identifier LIGHT_GREEN = id("container/matter_reconstructor/light_green");
@@ -25,7 +27,7 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
     private static final Identifier CONTAINER_TEXTURE = id("textures/gui/container/matter_reconstructor.png");
 
     public MatterReconstructorScreen(MatterReconstructorMenu menu, Inventory inventory, Component component) {
-        super(menu, inventory, component);
+        super(menu, new MatterReconstructorRecipeBookComponent(menu), inventory, component);
     }
 
     @Override
@@ -34,6 +36,10 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
         titleLabelX = (imageWidth - font.width(title)) / 2;
     }
 
+    @Override
+    protected ScreenPosition getRecipeBookButtonPosition() {
+        return new ScreenPosition(leftPos + 24, height / 2 - 30);
+    }
 
     @Override
     public void render(GuiGraphics guiGraphics, int x, int y, float tickDelta) {
@@ -44,7 +50,7 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
     }
 
     private void renderFuel(GuiGraphics guiGraphics) {
-        int x = width / 2 - 63;
+        int x = leftPos + 25;
         int y = height / 2 - 55;
 
         var sWidth = 18;
@@ -59,7 +65,7 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
 
     private void renderLight(GuiGraphics guiGraphics) {
         if (!menu.isPowered()) return;
-        int x = width / 2 + 50;
+        int x = leftPos + 138;
         int y = height / 2 - 22;
         Identifier tex = menu.hasResult() ? LIGHT_GREEN : LIGHT_RED;
         guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, tex, x, y, 8, 8);
@@ -76,7 +82,7 @@ public class MatterReconstructorScreen extends AbstractContainerScreen<MatterRec
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
-        int x = (width - imageWidth) / 2;
+        int x = leftPos;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_TEXTURE, x, y, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
         var text = "Assembly Time: %3.1fs".formatted(menu.getAssemblyTime() / 20.0);

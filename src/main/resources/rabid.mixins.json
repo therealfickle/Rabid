@@ -6,6 +6,8 @@
   "mixins": [
     "ConsumableMixin",
     "FoodPropertiesMixin",
+    "RecipeBookSettingsMixin",
+    "RecipeBookTypeMixin",
     "ServerPlayerMixin",
     "TransientCraftingContainerAccessor"
   ],

@@ -3,19 +3,25 @@ package me.therealfickle.rabid.inventory;
 import me.therealfickle.rabid.block.entity.MRContainerData;
 import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
 import me.therealfickle.rabid.init.RabidMenuTypes;
+import me.therealfickle.rabid.item.crafting.ReconstructorRecipe;
 import me.therealfickle.rabid.util.MRCache;
 import net.minecraft.core.NonNullList;
+import net.minecraft.recipebook.ServerPlaceRecipe;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.RecipeHolder;
+
+import java.util.List;
 
 import static me.therealfickle.rabid.mixins.TransientCraftingContainerAccessor.rabid_createTransientCraftingContainer;
 
-public class MatterReconstructorMenu extends AbstractContainerMenu implements ContainerListener {
+public class MatterReconstructorMenu extends RecipeBookMenu implements ContainerListener {
     private static final int USE_ROW_SLOT_END = 45;
 
     private final ResultContainer resultContainer = new ResultContainer();
@@ -51,8 +57,8 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
             }
         }
 
-        addStandardInventorySlots(inventory, 8, 84);
         addSlot(new NonInteractiveResultSlot(resultContainer, 0, 134, 35));
+        addStandardInventorySlots(inventory, 8, 84);
         addDataSlots(mrData);
         refreshRecipeResult();
     }
@@ -105,8 +111,22 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
         }
     }
 
+    public void clearCrafting() {
+        for (int i = 1; i < container.getContainerSize(); i++) {
+            container.setItem(i, ItemStack.EMPTY);
+        }
+    }
+
     public ItemStack getResultItem() {
         return resultContainer.getItem(0);
+    }
+
+    public List<Slot> getCraftingSlots(){
+        return slots.subList(1, 10);
+    }
+
+    public Slot getResultSlot(){
+        return slots.get(10);
     }
 
     public boolean hasResult() {
@@ -138,4 +158,41 @@ public class MatterReconstructorMenu extends AbstractContainerMenu implements Co
     public void dataChanged(AbstractContainerMenu menu, int i, int j) {
     }
 
+    @Override
+    public PostPlaceAction handlePlacement(boolean bl, boolean bl2, RecipeHolder<?> recipeHolder, ServerLevel serverLevel, Inventory inventory) {
+        @SuppressWarnings("unchecked")
+        var holder = (RecipeHolder<ReconstructorRecipe>) recipeHolder;
+
+        List<Slot> craftingSlots = getCraftingSlots();
+
+        return ServerPlaceRecipe.placeRecipe(
+                new ServerPlaceRecipe.CraftingMenuAccess<>() {
+                    public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
+                        MatterReconstructorMenu.this.fillCraftSlotsStackedContents(stackedItemContents);
+                    }
+
+                    public void clearCraftingContent() {
+                        MatterReconstructorMenu.this.clearCrafting();
+                        MatterReconstructorMenu.this.refreshRecipeResult();
+                    }
+
+                    public boolean recipeMatches(RecipeHolder<ReconstructorRecipe> recipeHolder1) {
+                        return recipeHolder1.value().matches(MatterReconstructorMenu.this.container.asCraftInput(), MatterReconstructorMenu.this.player.level());
+                    }
+                },
+                MatterReconstructorBlockEntity.GRID_WIDTH,
+                MatterReconstructorBlockEntity.GRID_HEIGHT,
+                craftingSlots, craftingSlots, inventory, holder, bl, bl2
+        );
+    }
+
+    @Override
+    public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
+        container.fillStackedContents(stackedItemContents);
+    }
+
+    @Override
+    public RecipeBookType getRecipeBookType() {
+        return RecipeBookType.RABID_RECONSTRUCTING;
+    }
 }

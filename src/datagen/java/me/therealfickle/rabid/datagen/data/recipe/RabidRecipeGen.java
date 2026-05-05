@@ -65,6 +65,11 @@ public class RabidRecipeGen extends RecipeProvider {
                 .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
                 .save(output());
 
+        reconstructorShapeless(MATERIALS, 200, Items.DIAMOND_BLOCK)
+                .requires(Items.IRON_INGOT, 9)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(output(), "they_call_me_the_tire_core");
+
     }
 
     public ShapelessReconstructorRecipeBuilder reconstructorShapeless(ReconstructingBookCategory recipeCategory, int assemblyTime, ItemLike itemLike) {

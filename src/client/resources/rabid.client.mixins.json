@@ -8,7 +8,9 @@
     "GuiMixin",
     "appleskin.HeldFoodCacheMixin",
     "appleskin.HUDOverlayHandlerMixin",
-    "appleskin.TooltipOverlayHandlerMixin"
+    "appleskin.TooltipOverlayHandlerMixin",
+    "SearchRecipeBookCategoryMixin",
+    "GhostSlotsAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

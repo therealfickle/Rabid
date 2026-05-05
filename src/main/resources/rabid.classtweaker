@@ -1,3 +1,7 @@
 classTweaker v2 named
+
 transitive-extend-enum net/minecraft/client/gui/Gui$ContextualInfo RABID_HEAT
+transitive-extend-enum net/minecraft/client/gui/screens/recipebook/SearchRecipeBookCategory RABID_RECONSTRUCTING
+transitive-extend-enum net/minecraft/world/inventory/RecipeBookType RABID_RECONSTRUCTING
+
 accessible class net/minecraft/client/gui/Gui$ContextualInfo
