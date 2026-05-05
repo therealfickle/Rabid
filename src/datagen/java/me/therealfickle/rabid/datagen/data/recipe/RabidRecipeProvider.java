@@ -20,7 +20,7 @@ public class RabidRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public String getName() {
-        return "Rabid recipes";
+        return "Rabid-Recipes";
     }
 
 }
