@@ -3,6 +3,7 @@ package me.therealfickle.rabid.block.entity;
 import me.therealfickle.rabid.data.tags.RabidItemTags;
 import me.therealfickle.rabid.init.RabidBlockEntityTypes;
 import me.therealfickle.rabid.inventory.MatterReconstructorMenu;
+import me.therealfickle.rabid.item.crafting.ReconstructorRecipe;
 import me.therealfickle.rabid.util.MRCache;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,7 +19,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
@@ -119,7 +119,7 @@ public class MatterReconstructorBlockEntity extends RandomizableContainerBlockEn
     public void fillStackedContents(StackedItemContents stackedItemContents) {
     }
 
-    public void craftResult(RecipeHolder<CraftingRecipe> recipeHolder, CraftingInput input) {
+    public void craftResult(RecipeHolder<ReconstructorRecipe> recipeHolder, CraftingInput input) {
         if (!(level instanceof ServerLevel serverLevel)) return;
         var resultStack = recipeHolder.value().assemble(input, serverLevel.registryAccess());
         if (resultStack.isEmpty()) return;

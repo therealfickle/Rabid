@@ -22,6 +22,7 @@ public class Rabid implements ModInitializer {
         RabidTabs.init();
         RabidAttachments.init();
         RabidStats.init();
+        RabidRecipes.init();
     }
 
     public static Identifier id(String path) {
