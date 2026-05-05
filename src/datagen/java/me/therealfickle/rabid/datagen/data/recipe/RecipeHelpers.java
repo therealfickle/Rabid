@@ -10,7 +10,7 @@ import org.jspecify.annotations.Nullable;
 
 public interface RecipeHelpers {
     static void sixItemStorageRecipes(
-            RabidRecipeProvider.RabidRecipeGen provider,
+            RabidRecipeGen provider,
             RecipeCategory recipeCategory,
             ItemLike itemLike,
             RecipeCategory recipeCategory2,
@@ -22,7 +22,7 @@ public interface RecipeHelpers {
     }
 
     static void sixItemStorageRecipes(
-            RabidRecipeProvider.RabidRecipeGen provider,
+            RabidRecipeGen provider,
             RecipeCategory recipeCategory,
             ItemLike itemLike,
             RecipeCategory recipeCategory2,
