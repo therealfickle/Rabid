@@ -1,0 +1,12 @@
+{
+  "block.fickle_plush.squish": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "rabid:block/fickle_plush",
+        "stream": true,
+        "volume": 0.1
+      }
+    ]
+  }
+}

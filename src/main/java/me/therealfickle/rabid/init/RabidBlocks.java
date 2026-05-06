@@ -10,10 +10,14 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LightningRodBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 import java.util.function.Function;
 
@@ -44,6 +48,7 @@ public interface RabidBlocks {
                     .isValidSpawn(Blocks::never)
                     .isSuffocating(Blocks::never)
                     .isViewBlocking(Blocks::never)
+                    .pushReaction(PushReaction.DESTROY)
     );
     Block MATTER_RECONSTRUCTOR = register("matter_reconstructor", MatterReconstructorBlock::new, ofFullCopy(SFA_BLOCK));
 

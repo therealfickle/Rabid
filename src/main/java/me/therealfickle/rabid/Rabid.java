@@ -23,6 +23,7 @@ public class Rabid implements ModInitializer {
         RabidAttachments.init();
         RabidStats.init();
         RabidRecipes.init();
+        RabidSoundEvents.init();
     }
 
     public static Identifier id(String path) {

@@ -3,6 +3,7 @@ package me.therealfickle.rabid.client;
 import me.therealfickle.rabid.client.gui.HeatBarRenderer;
 import me.therealfickle.rabid.client.gui.screens.inventory.MatterReconstructorScreen;
 import me.therealfickle.rabid.client.init.RabidRenderTypes;
+import me.therealfickle.rabid.client.renderer.blockentity.FicklePlushBlockEntityRenderer;
 import me.therealfickle.rabid.client.renderer.blockentity.MatterReconstructorBlockEntityRenderer;
 import me.therealfickle.rabid.init.RabidBlockEntityTypes;
 import me.therealfickle.rabid.init.RabidBlocks;
@@ -27,6 +28,7 @@ public class RabidClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(RabidBlocks.FICKLE_PLUSH, ChunkSectionLayer.CUTOUT);
         MenuScreens.register(RabidMenuTypes.MATTER_RECONSTRUCTOR, MatterReconstructorScreen::new);
         BlockEntityRenderers.register(RabidBlockEntityTypes.MATTER_RECONSTRUCTOR, MatterReconstructorBlockEntityRenderer::new);
+        BlockEntityRenderers.register(RabidBlockEntityTypes.FICKLE_PLUSH, FicklePlushBlockEntityRenderer::new);
     }
 
     public static boolean renderAsFuel(ItemStack itemStack) {
