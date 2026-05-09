@@ -27,6 +27,10 @@ public class Rabid implements ModInitializer {
     }
 
     public static Identifier id(String path) {
-        return Identifier.fromNamespaceAndPath(MODID, path);
+        return id(MODID, path);
+    }
+
+    public static Identifier id(String namespace, String path) {
+        return Identifier.fromNamespaceAndPath(namespace, path);
     }
 }
