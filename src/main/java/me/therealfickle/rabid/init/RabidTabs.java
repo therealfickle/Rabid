@@ -17,14 +17,16 @@ public interface RabidTabs {
             .displayItems((parameters, output) -> {
                 output.accept(RabidBlocks.FICKLE_PLUSH);
                 output.accept(RabidItems.EXPERIMENTAL_HELR_CALLER);
+                output.accept(RabidBlocks.MATTER_RECONSTRUCTOR);
                 output.accept(RabidItems.POLONIUM_PELLET);
                 output.accept(RabidItems.POLONIUM_NUGGET);
                 output.accept(RabidItems.PIPE_BOMB);
                 output.accept(RabidItems.SFA_INGOT);
                 output.accept(RabidBlocks.SFA_BLOCK);
                 output.accept(RabidBlocks.SFA_CRATE);
-                output.accept(RabidBlocks.MATTER_RECONSTRUCTOR);
                 output.accept(RabidBlocks.SFA_DISTRESS_LIGHT);
+                output.accept(RabidItems.SFA_GLAIVE);
+                output.accept(RabidItems.HERACLES);
             })
             .build()
     );

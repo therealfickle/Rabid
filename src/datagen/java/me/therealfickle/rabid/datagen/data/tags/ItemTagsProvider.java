@@ -21,6 +21,8 @@ public class ItemTagsProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.OMINOUS_BOTTLE);
         valueLookupBuilder(RabidItemTags.MATTER_RECONSTRUCTOR_FUELS)
                 .add(RabidItems.POLONIUM_PELLET);
+        valueLookupBuilder(RabidItemTags.SFA_TOOL_MATERIALS)
+                .add(RabidItems.SFA_INGOT);
         valueLookupBuilder(ConventionalItemTags.INGOTS)
                 .add(RabidItems.SFA_INGOT);
     }

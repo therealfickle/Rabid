@@ -2,7 +2,10 @@ package me.therealfickle.rabid.init;
 
 import me.therealfickle.rabid.data.tags.RabidDamageTypeTags;
 import me.therealfickle.rabid.init.misc.RabidItemData;
+import me.therealfickle.rabid.init.misc.RabidToolMaterials;
 import me.therealfickle.rabid.item.ExperimentalHELRCallerItem;
+import me.therealfickle.rabid.item.HeraclesItem;
+import me.therealfickle.rabid.item.SFAGlaiveItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,6 +18,7 @@ import net.minecraft.world.item.component.DamageResistant;
 import java.util.function.Function;
 
 import static me.therealfickle.rabid.Rabid.id;
+import static me.therealfickle.rabid.init.misc.RabidToolMaterials.applyGlaiveProperties;
 
 public interface RabidItems {
     Item POLONIUM_PELLET = register("polonium_pellet",
@@ -40,6 +44,10 @@ public interface RabidItems {
     );
 
     Item PIPE_BOMB = register("pipe_bomb", new Properties());
+    Item HERACLES = register("heracles", HeraclesItem::new, new Properties());
+    Item SFA_GLAIVE = register("sfa_glaive", SFAGlaiveItem::new,
+            applyGlaiveProperties(new Properties(), RabidToolMaterials.SFA, 3.0F, -2.8F)
+    );
 
     static void init() {
 

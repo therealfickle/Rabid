@@ -15,8 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 
 import static me.therealfickle.rabid.datagen.data.recipe.RecipeHelpers.sixItemStorageRecipes;
-import static me.therealfickle.rabid.item.crafting.ReconstructingBookCategory.BUILDING;
-import static me.therealfickle.rabid.item.crafting.ReconstructingBookCategory.MATERIALS;
+import static me.therealfickle.rabid.item.crafting.ReconstructingBookCategory.*;
 
 public class RabidRecipeGen extends RecipeProvider {
     private final HolderLookup.RegistryLookup<Item> items2;
@@ -73,6 +72,24 @@ public class RabidRecipeGen extends RecipeProvider {
                 .pattern("IBI")
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                 .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
+                .save(output());
+
+        reconstructorShaped(EQUIPMENT, 800, RabidItems.SFA_GLAIVE)
+                .define('P', RabidItems.POLONIUM_PELLET)
+                .define('I', RabidItems.SFA_INGOT)
+                .pattern("  P")
+                .pattern(" I ")
+                .pattern("I  ")
+                .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
+                .save(output());
+
+        reconstructorShaped(EQUIPMENT, 800, RabidItems.HERACLES)
+                .define('I', RabidItems.SFA_INGOT)
+                .define('B', RabidBlocks.SFA_BLOCK)
+                .define('M', RabidItems.PIPE_BOMB)
+                .pattern("IBM")
+                .pattern("  I")
+                .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
                 .save(output());
 
     }
