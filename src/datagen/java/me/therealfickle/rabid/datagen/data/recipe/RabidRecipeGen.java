@@ -13,7 +13,6 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 
 import static me.therealfickle.rabid.datagen.data.recipe.RecipeHelpers.sixItemStorageRecipes;
 import static me.therealfickle.rabid.item.crafting.ReconstructingBookCategory.BUILDING;
@@ -57,7 +56,7 @@ public class RabidRecipeGen extends RecipeProvider {
                 .save(output());
 
         reconstructorShaped(BUILDING, 100, RabidBlocks.SFA_CRATE)
-                .define('C', Blocks.CHEST)
+                .define('C', Items.CHEST)
                 .define('F', RabidItems.SFA_INGOT)
                 .pattern(" F ")
                 .pattern("FCF")
@@ -65,10 +64,16 @@ public class RabidRecipeGen extends RecipeProvider {
                 .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
                 .save(output());
 
-        reconstructorShapeless(MATERIALS, 200, Items.DIAMOND_BLOCK)
-                .requires(Items.IRON_INGOT, 9)
+        reconstructorShaped(MATERIALS, 400, RabidItems.PIPE_BOMB)
+                .define('I', Items.IRON_INGOT)
+                .define('B', Items.IRON_BLOCK)
+                .define('R', Items.REDSTONE)
+                .define('G', Items.GLASS)
+                .pattern("RGR")
+                .pattern("IBI")
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                .save(output(), "they_call_me_the_tire_core");
+                .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
+                .save(output());
 
     }
 
