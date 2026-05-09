@@ -20,7 +20,7 @@ public interface RabidTabs {
                 output.accept(RabidBlocks.MATTER_RECONSTRUCTOR);
                 output.accept(RabidItems.POLONIUM_PELLET);
                 output.accept(RabidItems.POLONIUM_NUGGET);
-                output.accept(RabidItems.PIPE_BOMB);
+                output.accept(RabidItems.FABRICATED_INTEGRATED_COMPONENT);
                 output.accept(RabidItems.SFA_INGOT);
                 output.accept(RabidBlocks.SFA_BLOCK);
                 output.accept(RabidBlocks.SFA_CRATE);

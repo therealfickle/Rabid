@@ -30,7 +30,7 @@ public class ModelProvider extends FabricModelProvider {
         gen.generateFlatItem(RabidItems.POLONIUM_NUGGET, ModelTemplates.FLAT_ITEM);
         gen.generateFlatItem(RabidItems.POLONIUM_PELLET, ModelTemplates.FLAT_ITEM);
         gen.generateFlatItem(RabidItems.EXPERIMENTAL_HELR_CALLER, ModelTemplates.FLAT_ITEM);
-        gen.generateFlatItem(RabidItems.PIPE_BOMB, ModelTemplates.FLAT_ITEM);
+        gen.generateFlatItem(RabidItems.FABRICATED_INTEGRATED_COMPONENT, ModelTemplates.FLAT_ITEM);
 
         gen.declareCustomModelItem(RabidItems.SFA_GLAIVE);
         gen.declareCustomModelItem(RabidItems.HERACLES);

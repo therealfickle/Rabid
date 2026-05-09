@@ -63,7 +63,7 @@ public class RabidRecipeGen extends RecipeProvider {
                 .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
                 .save(output());
 
-        reconstructorShaped(MATERIALS, 400, RabidItems.PIPE_BOMB)
+        reconstructorShaped(MATERIALS, 400, RabidItems.FABRICATED_INTEGRATED_COMPONENT)
                 .define('I', Items.IRON_INGOT)
                 .define('B', Items.IRON_BLOCK)
                 .define('R', Items.REDSTONE)
@@ -86,7 +86,7 @@ public class RabidRecipeGen extends RecipeProvider {
         reconstructorShaped(EQUIPMENT, 800, RabidItems.HERACLES)
                 .define('I', RabidItems.SFA_INGOT)
                 .define('B', RabidBlocks.SFA_BLOCK)
-                .define('M', RabidItems.PIPE_BOMB)
+                .define('M', RabidItems.FABRICATED_INTEGRATED_COMPONENT)
                 .pattern("IBM")
                 .pattern("  I")
                 .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))

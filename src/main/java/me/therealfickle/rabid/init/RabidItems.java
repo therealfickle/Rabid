@@ -43,7 +43,7 @@ public interface RabidItems {
                     .component(DataComponents.DAMAGE_RESISTANT, new DamageResistant(RabidDamageTypeTags.HELR_CALLER_IMMUNE))
     );
 
-    Item PIPE_BOMB = register("pipe_bomb", new Properties());
+    Item FABRICATED_INTEGRATED_COMPONENT = register("fabricated_integrated_component", new Properties());
     Item HERACLES = register("heracles", HeraclesItem::new, new Properties());
     Item SFA_GLAIVE = register("sfa_glaive", SFAGlaiveItem::new,
             applyGlaiveProperties(new Properties(), RabidToolMaterials.SFA, 3.0F, -2.8F)
