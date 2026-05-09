@@ -74,7 +74,7 @@ public class RabidRecipeGen extends RecipeProvider {
                 .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
                 .save(output());
 
-        reconstructorShaped(EQUIPMENT, 800, RabidItems.SFA_GLAIVE)
+        reconstructorShaped(EQUIPMENT, 800, RabidItems.POLONIUM_GLAIVE)
                 .define('P', RabidItems.POLONIUM_PELLET)
                 .define('I', RabidItems.SFA_INGOT)
                 .pattern("  P")

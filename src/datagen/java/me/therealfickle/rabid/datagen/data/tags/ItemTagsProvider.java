@@ -30,7 +30,7 @@ public class ItemTagsProvider extends FabricTagProvider.ItemTagProvider {
 
         // Vanilla Tags
         valueLookupBuilder(ItemTags.BEACON_PAYMENT_ITEMS).add(RabidItems.SFA_INGOT);
-        valueLookupBuilder(ItemTags.SWORDS).add(RabidItems.SFA_GLAIVE);
+        valueLookupBuilder(ItemTags.SWORDS).add(RabidItems.POLONIUM_GLAIVE);
 
 
         // Common Tags
@@ -43,8 +43,8 @@ public class ItemTagsProvider extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(CItemTags.SFA_INGOTS).add(RabidItems.SFA_INGOT);
         valueLookupBuilder(ConventionalItemTags.INGOTS).forceAddTag(CItemTags.SFA_INGOTS);
 
-        valueLookupBuilder(ConventionalItemTags.MELEE_WEAPON_TOOLS).add(RabidItems.SFA_GLAIVE);
-        valueLookupBuilder(ConventionalItemTags.MELEE_WEAPONS_TOOLS).add(RabidItems.SFA_GLAIVE);
+        valueLookupBuilder(ConventionalItemTags.MELEE_WEAPON_TOOLS).add(RabidItems.POLONIUM_GLAIVE);
+        valueLookupBuilder(ConventionalItemTags.MELEE_WEAPONS_TOOLS).add(RabidItems.POLONIUM_GLAIVE);
         valueLookupBuilder(ConventionalItemTags.RANGED_WEAPON_TOOLS).add(RabidItems.HERACLES);
         valueLookupBuilder(ConventionalItemTags.RANGED_WEAPONS_TOOLS).add(RabidItems.HERACLES);
 

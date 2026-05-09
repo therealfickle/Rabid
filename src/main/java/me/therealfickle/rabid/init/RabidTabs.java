@@ -25,7 +25,7 @@ public interface RabidTabs {
                 output.accept(RabidBlocks.SFA_BLOCK);
                 output.accept(RabidBlocks.SFA_CRATE);
                 output.accept(RabidBlocks.SFA_DISTRESS_LIGHT);
-                output.accept(RabidItems.SFA_GLAIVE);
+                output.accept(RabidItems.POLONIUM_GLAIVE);
                 output.accept(RabidItems.HERACLES);
             })
             .build()

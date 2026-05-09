@@ -6,8 +6,8 @@
     32
   ],
   "textures": {
-    "0": "heracles",
-    "particle": "heracles"
+    "0": "rabid:item/heracles_in_hand",
+    "particle": "rabid:item/heracles_in_hand"
   },
   "elements": [
     {

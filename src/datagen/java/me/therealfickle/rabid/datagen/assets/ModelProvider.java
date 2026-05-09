@@ -8,8 +8,7 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
 
-import static me.therealfickle.rabid.datagen.assets.ModelHelpers.createCrate;
-import static me.therealfickle.rabid.datagen.assets.ModelHelpers.createLightningRod;
+import static me.therealfickle.rabid.datagen.assets.ModelHelpers.*;
 
 public class ModelProvider extends FabricModelProvider {
     public ModelProvider(FabricDataOutput output) {
@@ -32,7 +31,7 @@ public class ModelProvider extends FabricModelProvider {
         gen.generateFlatItem(RabidItems.EXPERIMENTAL_HELR_CALLER, ModelTemplates.FLAT_ITEM);
         gen.generateFlatItem(RabidItems.FABRICATED_INTEGRATED_COMPONENT, ModelTemplates.FLAT_ITEM);
 
-        gen.declareCustomModelItem(RabidItems.SFA_GLAIVE);
+        generate3DHeld(gen, RabidItems.POLONIUM_GLAIVE);
         gen.declareCustomModelItem(RabidItems.HERACLES);
 
     }
