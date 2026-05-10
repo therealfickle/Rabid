@@ -46,7 +46,7 @@ public interface RabidItems {
     Item FABRICATED_INTEGRATED_COMPONENT = register("fabricated_integrated_component", new Properties());
     Item HERACLES = register("heracles", HeraclesItem::new, new Properties());
     Item POLONIUM_GLAIVE = register("polonium_glaive", PoloniumGlaiveItem::new,
-            applyGlaiveProperties(new Properties(), RabidToolMaterials.SFA, 3.0F, -2.8F)
+            applyGlaiveProperties(new Properties(),RabidToolMaterials.SFA, 3.0F, -2.8F)
     );
 
     static void init() {

@@ -13,6 +13,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 
 import static me.therealfickle.rabid.datagen.data.recipe.RecipeHelpers.sixItemStorageRecipes;
 import static me.therealfickle.rabid.item.crafting.ReconstructingBookCategory.*;
@@ -47,6 +48,31 @@ public class RabidRecipeGen extends RecipeProvider {
                 "polonium_pellet_from_nuggets",
                 "polonium_pellet"
         );
+        shaped(RecipeCategory.MISC, RabidBlocks.MATTER_RECONSTRUCTOR)
+                .define('F', RabidItems.FABRICATED_INTEGRATED_COMPONENT)
+                .define('P', RabidItems.POLONIUM_PELLET)
+                .define('X', Items.IRON_INGOT)
+                .define('G', Blocks.GLASS)
+                .pattern("XGX")
+                .pattern("FPF")
+                .pattern("XXX")
+                .unlockedBy(getHasName(RabidItems.FABRICATED_INTEGRATED_COMPONENT), has(RabidItems.FABRICATED_INTEGRATED_COMPONENT))
+                .unlockedBy(getHasName(RabidItems.POLONIUM_PELLET), has(RabidItems.POLONIUM_PELLET))
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .unlockedBy(getHasName(Blocks.GLASS), has(Blocks.GLASS))
+                .save(output);
+        shaped(RecipeCategory.MISC, RabidItems.FABRICATED_INTEGRATED_COMPONENT)
+                .define('I', Items.IRON_INGOT)
+                .define('B', Items.IRON_BLOCK)
+                .define('R', Items.REDSTONE)
+                .define('G', Items.GLASS)
+                .pattern(" I ")
+                .pattern("RGR")
+                .pattern("IBI")
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
+                .save(output());
+
 
         reconstructorShapeless(MATERIALS, 200, RabidItems.SFA_INGOT)
                 .requires(Items.IRON_INGOT, 4)
@@ -65,12 +91,13 @@ public class RabidRecipeGen extends RecipeProvider {
 
         reconstructorShaped(MATERIALS, 400, RabidItems.FABRICATED_INTEGRATED_COMPONENT)
                 .define('I', Items.IRON_INGOT)
-                .define('B', Items.IRON_BLOCK)
+                .define('S', RabidItems.SFA_INGOT)
                 .define('R', Items.REDSTONE)
                 .define('G', Items.GLASS)
                 .pattern("RGR")
-                .pattern("IBI")
+                .pattern("ISI")
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(RabidItems.SFA_INGOT))
                 .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
                 .save(output());
 
