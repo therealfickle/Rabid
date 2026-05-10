@@ -5,12 +5,14 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "ContextualInfoMixin",
+    "GhostSlotsAccessor",
     "GuiMixin",
+    "SearchRecipeBookCategoryMixin",
     "appleskin.HeldFoodCacheMixin",
     "appleskin.HUDOverlayHandlerMixin",
     "appleskin.TooltipOverlayHandlerMixin",
-    "SearchRecipeBookCategoryMixin",
-    "GhostSlotsAccessor"
+    "csr.ItemStackRenderStateAccessor",
+    "csr.LayerRenderStateMixin"
   ],
   "injectors": {
     "defaultRequire": 1

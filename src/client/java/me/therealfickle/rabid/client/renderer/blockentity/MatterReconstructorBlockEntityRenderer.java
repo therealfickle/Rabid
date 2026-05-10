@@ -2,9 +2,12 @@ package me.therealfickle.rabid.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import me.therealfickle.rabid.block.MatterReconstructorBlock;
 import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
 import me.therealfickle.rabid.client.renderer.blockentity.state.MatterReconstructorRenderState;
+import me.therealfickle.rabid.init.RabidItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -15,6 +18,8 @@ import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.jspecify.annotations.Nullable;
@@ -34,11 +39,20 @@ public class MatterReconstructorBlockEntityRenderer implements BlockEntityRender
     }
 
     @Override
-    public void extractRenderState(MatterReconstructorBlockEntity blockEntity, MatterReconstructorRenderState state, float f, Vec3 vec3, ModelFeatureRenderer.@Nullable CrumblingOverlay crumblingOverlay) {
-        BlockEntityRenderer.super.extractRenderState(blockEntity, state, f, vec3, crumblingOverlay);
-        state.facing = blockEntity.getBlockState().getValue(MatterReconstructorBlock.FACING);
-        state.powered = blockEntity.isPowered;
-
+    public void extractRenderState(MatterReconstructorBlockEntity reconstructor, MatterReconstructorRenderState state, float f, Vec3 vec3, ModelFeatureRenderer.@Nullable CrumblingOverlay crumblingOverlay) {
+        BlockEntityRenderer.super.extractRenderState(reconstructor, state, f, vec3, crumblingOverlay);
+        state.facing = reconstructor.getBlockState().getValue(MatterReconstructorBlock.FACING);
+        state.powered = reconstructor.isPowered;
+        var level = reconstructor.getLevel();
+        if (level == null) return;
+        var speed = 5.0f;
+        state.tickingTime = (level.getGameTime() + f) * speed;
+        var item = (reconstructor.getBlockPos().getX() % 2 == 0) ? Items.REDSTONE_BLOCK : RabidItems.POLONIUM_GLAIVE;
+        Minecraft.getInstance().getItemModelResolver().updateForTopItem(
+                state.resultItem.delegate, item.getDefaultInstance(), ItemDisplayContext.GROUND, Minecraft.getInstance().level, null, 0
+        );
+        var color = 0xff_fff081;
+        state.resultItem.renderTypeGetter = (quadAtlas, layer) -> RenderTypes.endGateway(); //itemEntityTranslucentCull(quadAtlas.getTextureId());
     }
 
     @Override
@@ -46,15 +60,20 @@ public class MatterReconstructorBlockEntityRenderer implements BlockEntityRender
         poseStack.pushPose();
         var dir = state.facing;
 
-//        poseStack.translate(0.5, 0, 0.5);
-//        poseStack.translate(dir.getOpposite().getUnitVec3().scale(3));
-//        poseStack.mulPose(Axis.YP.rotationDegrees(-dir.getOpposite().toYRot()));
+        poseStack.translate(0.5, 0, 0.5);
+        poseStack.mulPose(Axis.YP.rotationDegrees(state.tickingTime - dir.getOpposite().toYRot()));
 
+        poseStack.translate(0, 1.5, 0);
 
         var light = 15728880;
+
+        //0x0f_fff081
+        state.resultItem.submit(poseStack, collector, light, OverlayTexture.NO_OVERLAY, 0);
+
 //        collector.submitCustomGeometry(poseStack, RabidRenderTypes.matterReconstructor(AREA), (pose, vertexConsumer) -> renderShape(state, pose, vertexConsumer, light));
 
-//        collector.submitBlock(poseStack, Blocks.LOOM.defaultBlockState(), light, 0, 0);
+//        collector.submitBlock(poseStack, Blocks.LOOM.defaultBlockState(), light, OverlayTexture.NO_OVERLAY, 0);
+
        /* for (var x = -2; x <= 2; x++) {
             for (var y = 0; y <= 2; y++) {
                 for (var z = -2; z <= 2; z++) {
