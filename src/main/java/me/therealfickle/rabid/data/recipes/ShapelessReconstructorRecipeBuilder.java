@@ -8,6 +8,7 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -91,6 +92,11 @@ public class ShapelessReconstructorRecipeBuilder implements RecipeBuilder {
     @Override
     public Item getResult() {
         return result.getItem();
+    }
+
+    @Override
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, ResourceKey.create(Registries.RECIPE, RecipeBuilder.getDefaultRecipeId(getResult()).withPrefix("reconstructor/")));
     }
 
     @Override

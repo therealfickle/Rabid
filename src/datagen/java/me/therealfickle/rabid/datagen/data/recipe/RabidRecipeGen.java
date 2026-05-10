@@ -73,7 +73,10 @@ public class RabidRecipeGen extends RecipeProvider {
                 .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
                 .save(output());
 
+        matterReconstructor();
+    }
 
+    void matterReconstructor() {
         reconstructorShapeless(MATERIALS, 200, RabidItems.SFA_INGOT)
                 .requires(Items.IRON_INGOT, 4)
                 .requires(Items.OBSIDIAN, 4)
@@ -118,7 +121,10 @@ public class RabidRecipeGen extends RecipeProvider {
                 .pattern("  I")
                 .unlockedBy(getHasName(RabidItems.SFA_INGOT), has(RabidItems.SFA_INGOT))
                 .save(output());
+    }
 
+    public RecipeOutput output() {
+        return output;
     }
 
     public ShapelessReconstructorRecipeBuilder reconstructorShapeless(ReconstructingBookCategory recipeCategory, int assemblyTime, ItemLike itemLike) {
@@ -135,10 +141,6 @@ public class RabidRecipeGen extends RecipeProvider {
 
     public ShapedReconstructorRecipeBuilder reconstructorShaped(ReconstructingBookCategory recipeCategory, int assemblyTime, ItemLike itemLike, int i) {
         return ShapedReconstructorRecipeBuilder.reconstructorShaped(items2, recipeCategory, assemblyTime, itemLike, i);
-    }
-
-    public RecipeOutput output() {
-        return output;
     }
 
 }

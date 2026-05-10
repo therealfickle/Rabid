@@ -10,6 +10,7 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -22,7 +23,6 @@ import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.Nullable;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -33,9 +33,9 @@ public class ShapedReconstructorRecipeBuilder implements RecipeBuilder {
     private final Item result;
     private final int count;
     final int assemblyTime;
-    private final List<String> rows = Lists.<String>newArrayList();
-    private final Map<Character, Ingredient> key = Maps.<Character, Ingredient>newLinkedHashMap();
-    private final Map<String, Criterion<?>> criteria = new LinkedHashMap();
+    private final List<String> rows = Lists.newArrayList();
+    private final Map<Character, Ingredient> key = Maps.newLinkedHashMap();
+    private final Map<String, Criterion<?>> criteria = Maps.newLinkedHashMap();
     @Nullable
     private String group;
     private boolean showNotification = true;
@@ -76,7 +76,7 @@ public class ShapedReconstructorRecipeBuilder implements RecipeBuilder {
     }
 
     public ShapedReconstructorRecipeBuilder pattern(String string) {
-        if (!this.rows.isEmpty() && string.length() != ((String) this.rows.get(0)).length()) {
+        if (!this.rows.isEmpty() && string.length() != this.rows.get(0).length()) {
             throw new IllegalArgumentException("Pattern must be the same width on every line!");
         } else {
             this.rows.add(string);
@@ -105,6 +105,11 @@ public class ShapedReconstructorRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
+    public void save(RecipeOutput recipeOutput) {
+        this.save(recipeOutput, ResourceKey.create(Registries.RECIPE, RecipeBuilder.getDefaultRecipeId(getResult()).withPrefix("reconstructor/")));
+    }
+
+    @Override
     public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
         ShapedRecipePattern shapedRecipePattern = this.ensureValid(resourceKey);
         Advancement.Builder builder = recipeOutput.advancement()
@@ -113,7 +118,7 @@ public class ShapedReconstructorRecipeBuilder implements RecipeBuilder {
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
         var shapedRecipe = new ShapedReconstructorRecipe(
-                (String) Objects.requireNonNullElse(this.group, ""),
+                Objects.requireNonNullElse(this.group, ""),
                 this.category,
                 shapedRecipePattern,
                 new ItemStack(this.result, this.count),
