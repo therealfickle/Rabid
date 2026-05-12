@@ -5,8 +5,8 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import me.therealfickle.rabid.block.MatterReconstructorBlock;
 import me.therealfickle.rabid.block.entity.MatterReconstructorBlockEntity;
+import me.therealfickle.rabid.client.init.RabidRenderTypes;
 import me.therealfickle.rabid.client.renderer.blockentity.state.MatterReconstructorRenderState;
-import me.therealfickle.rabid.init.RabidItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.Items;
@@ -47,12 +48,17 @@ public class MatterReconstructorBlockEntityRenderer implements BlockEntityRender
         if (level == null) return;
         var speed = 5.0f;
         state.tickingTime = (level.getGameTime() + f) * speed;
-        var item = (reconstructor.getBlockPos().getX() % 2 == 0) ? Items.REDSTONE_BLOCK : RabidItems.POLONIUM_GLAIVE;
+
+        var rand = level.random.forkPositional().at(reconstructor.getBlockPos());
+        rand.setSeed(reconstructor.getBlockPos().asLong());
+        var item = BuiltInRegistries.ITEM.getRandom(rand)
+                .orElse(Items.ACACIA_BOAT.builtInRegistryHolder())
+                .value().getDefaultInstance();
         Minecraft.getInstance().getItemModelResolver().updateForTopItem(
-                state.resultItem.delegate, item.getDefaultInstance(), ItemDisplayContext.GROUND, Minecraft.getInstance().level, null, 0
+                state.resultItem.delegate, item, ItemDisplayContext.GROUND, Minecraft.getInstance().level, null, 0
         );
         var color = 0xff_fff081;
-        state.resultItem.renderTypeGetter = (quadAtlas, layer) -> RenderTypes.endGateway(); //itemEntityTranslucentCull(quadAtlas.getTextureId());
+        state.resultItem.renderTypeGetter = (quadAtlas, layer) -> RabidRenderTypes.holoItem(quadAtlas.getTextureId());
     }
 
     @Override
