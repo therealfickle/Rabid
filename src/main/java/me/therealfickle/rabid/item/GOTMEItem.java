@@ -14,8 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
-public class PoloniumGlaiveItem extends Item {
-    public PoloniumGlaiveItem(Properties settings) {
+public class GOTMEItem extends Item {
+    public GOTMEItem(Properties settings) {
         super(settings);
     }
 

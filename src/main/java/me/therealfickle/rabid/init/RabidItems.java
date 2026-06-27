@@ -4,8 +4,8 @@ import me.therealfickle.rabid.data.tags.RabidDamageTypeTags;
 import me.therealfickle.rabid.init.misc.RabidItemData;
 import me.therealfickle.rabid.init.misc.RabidToolMaterials;
 import me.therealfickle.rabid.item.ExperimentalHELRCallerItem;
+import me.therealfickle.rabid.item.GOTMEItem;
 import me.therealfickle.rabid.item.HeraclesItem;
-import me.therealfickle.rabid.item.PoloniumGlaiveItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -45,8 +45,8 @@ public interface RabidItems {
 
     Item FABRICATED_INTEGRATED_COMPONENT = register("fabricated_integrated_component", new Properties());
     Item HERACLES = register("heracles", HeraclesItem::new, new Properties());
-    Item POLONIUM_GLAIVE = register("polonium_glaive", PoloniumGlaiveItem::new,
-            applyGlaiveProperties(new Properties(),RabidToolMaterials.SFA, 3.0F, -2.8F)
+    Item GOTME = register("gotme", GOTMEItem::new,
+            applyGlaiveProperties(new Properties(), RabidToolMaterials.SFA, 3.0F, -2.8F)
     );
 
     static void init() {
