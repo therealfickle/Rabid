@@ -33,6 +33,7 @@ loom {
             ideConfigGenerated(true)
             runDir("run")
             programArgs("--quickPlaySingleplayer", "test", "--username", username, "--uuid", uuid)
+            vmArg("-XX:+AllowEnhancedClassRedefinition")
         }
     }
 }
@@ -82,10 +83,12 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "org.teamvoided:creative_works:0.5.1+1.21.11"
+    modImplementation("org.teamvoided:creative_works:0.5.1+1.21.11") {
+        exclude module: "modmenu"
+    }
     modImplementation "me.fzzyhmstrs:fzzy_config:0.7.6+1.21.11"
 
-    modImplementation("squeek.appleskin:appleskin-fabric:${project.appleskin_version}"){
+    modImplementation("squeek.appleskin:appleskin-fabric:${project.appleskin_version}") {
         exclude module: "modmenu"
     }
 }

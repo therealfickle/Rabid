@@ -30,7 +30,6 @@ public interface RabidPipelines {
                     .withFragmentShader(id("core/rendertype_holo_item"))
                     .withSampler("Sampler0")
                     .withSampler("Sampler2")
-                    .withUniform("Time", "TIme")
                     .withBlend(ALPHA_BLEND)
                     .withVertexFormat(DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS)
                     .build()
