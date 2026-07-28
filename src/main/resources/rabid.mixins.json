@@ -4,12 +4,6 @@
   "package": "me.therealfickle.rabid.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ConsumableMixin",
-    "FoodPropertiesMixin",
-    "RecipeBookSettingsMixin",
-    "RecipeBookTypeMixin",
-    "ServerPlayerMixin",
-    "TransientCraftingContainerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -14,8 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
-public class HeraclesItem extends Item {
-    public HeraclesItem(Properties settings) {
+public class QECItem extends Item {
+    public QECItem(Properties settings) {
         super(settings);
     }
 

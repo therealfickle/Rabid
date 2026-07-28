@@ -4,15 +4,6 @@
   "package": "me.therealfickle.rabid.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "ContextualInfoMixin",
-    "GhostSlotsAccessor",
-    "GuiMixin",
-    "SearchRecipeBookCategoryMixin",
-    "appleskin.HeldFoodCacheMixin",
-    "appleskin.HUDOverlayHandlerMixin",
-    "appleskin.TooltipOverlayHandlerMixin",
-    "csr.ItemStackRenderStateAccessor",
-    "csr.LayerRenderStateMixin"
   ],
   "injectors": {
     "defaultRequire": 1
